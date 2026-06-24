@@ -20,7 +20,6 @@ export const DESKTOP_ICONS = [
 export const SOCIAL = [
   { key: "xiaohongshu", label: "小红书", value: "@Echo的画板",        href: null, copy: "@Echo的画板", qr: null },
   { key: "wechat",      label: "微信",   value: "wangxinran_echo",    href: null, copy: "wangxinran_echo", qr: null },
-  { key: "github",      label: "GitHub", value: "github.com/echowang97", href: "https://github.com/echowang97" },
   { key: "email",       label: "Email",  value: "echowangxr@gmail.com",  href: "mailto:echowangxr@gmail.com" },
   { key: "phone",       label: "Phone",  value: "+86 15652197916",       href: "tel:+8615652197916" },
 ];
@@ -79,19 +78,22 @@ export const FOLDERS = {
   delysium: {
     label: "Delysium",
     items: [
-      { type: "link", label: "delysium.com", sub: "官网", href: "https://delysium.com" },
-      { type: "link", label: "dna.delysium.com", href: "https://dna.delysium.com/" },
-      { type: "link", label: "dashboard.delysium.com", href: "https://dashboard.delysium.com" },
+      { type: "work", title: "delysium.com", sub: "官网", href: "https://delysium.com", shot: null,
+        desc: "Delysium 品牌官网。〔草稿：补一句产品定位，待你确认〕" },
+      { type: "work", title: "dna.delysium.com", href: "https://dna.delysium.com/", shot: null,
+        desc: "Delysium DNA。〔草稿：补一句这是什么，待你确认〕" },
+      { type: "work", title: "dashboard.delysium.com", href: "https://dashboard.delysium.com", shot: null,
+        desc: "Delysium Dashboard，用户/数据面板。〔草稿：补一句用途，待你确认〕" },
       {
-        type: "note",
+        type: "work",
         title: "Delysium Whitepaper · 2022 · interactive / 像素叙事",
         badge: "🏆 Awwwards Honorable Mention",
-        body: "横版步行的交互式白皮书。按任意键进入后操控角色走过赛博朋克像素街景，沿途的 NPC（META-STEPHENSON、OMNI-KOJIMA…）逐段讲述 Delysium 的世界观。",
+        href: "https://delysium-l7kmeq3yz-rct-ai.vercel.app/whitepaper?production",
+        shot: "https://kuse-studio-six.vercel.app/archive/delysium-whitepaper/screens/walk-00.png",
+        desc: "横版步行的交互式白皮书。按任意键进入后操控角色走过赛博朋克像素街景，沿途的 NPC（META-STEPHENSON、OMNI-KOJIMA…）逐段讲述 Delysium 的世界观。",
         credits: "Credits: rct AI · XerLee · yuxiao-hu · Echo Wang · Ollie · Shule Hsiung · gogu · Cao Shui",
         links: [
-          { label: "看线上", href: "https://delysium-l7kmeq3yz-rct-ai.vercel.app/whitepaper?production" },
           { label: "Awwwards 页", href: "https://www.awwwards.com/sites/delysium-whitepaper" },
-          { label: "下载 WACZ 存档", href: "https://kuse-studio-six.vercel.app/archive/wacz/delysium-whitepaper.wacz" },
         ],
       },
       ...["00","03","06","09","12","16","20","24"].map((n) => ({
@@ -105,33 +107,36 @@ export const FOLDERS = {
   kuse: {
     label: "Kuse",
     items: [
-      { type: "link", label: "kuse.ai", sub: "现在的官网", href: "https://kuse.ai" },
-      { type: "link", label: "app.kuse.ai", sub: "产品本体", href: "https://app.kuse.ai" },
+      { type: "work", title: "kuse.ai", sub: "现在的官网", href: "https://kuse.ai", shot: null,
+        desc: "Kuse 现在的官网。" },
+      { type: "work", title: "app.kuse.ai", sub: "产品本体", href: "https://app.kuse.ai", shot: null,
+        desc: "Kuse 产品本体，服务 170 个国家、50 万注册用户的 AI 协作工作台。" },
       {
-        type: "note",
+        type: "work",
         title: "Landing · staging (2026) · 滚动叙事",
-        body: "滚动驱动的产品落地页，点阵背景上逐屏演示「如何与 AI 协作」。做了可交互 WACZ 网页存档，原站下线也能重放。",
+        href: "https://www-staging.kuse.ai/",
+        shot: null,
+        desc: "滚动驱动的产品落地页，点阵背景上逐屏演示「如何与 AI 协作」。做了可交互 WACZ 网页存档，原站下线也能重放。",
         links: [
-          { label: "看线上 staging", href: "https://www-staging.kuse.ai/" },
           { label: "全屏重放（存档）", href: "https://kuse-studio-six.vercel.app/archive/replay/kuse-landing.html" },
         ],
       },
       {
-        type: "note",
+        type: "work",
         title: "Landing · Webflow (2025) · Webflow 快照",
-        body: "「The AI Knowledge Base for Creating Docs, Webpages & Presentations」卡片叠放首屏 + 滚动叙事。整站静态快照存档。",
+        href: "https://kuse-studio-six.vercel.app/archive/webflow-site/kuse.html",
+        shot: null,
+        desc: "「The AI Knowledge Base for Creating Docs, Webpages & Presentations」卡片叠放首屏 + 滚动叙事。整站静态快照存档。",
         links: [
-          { label: "全屏打开快照", href: "https://kuse-studio-six.vercel.app/archive/webflow-site/kuse.html" },
           { label: "原 Webflow 站", href: "https://kuse-usecase.webflow.io/kuse" },
         ],
       },
       {
-        type: "note",
+        type: "work",
         title: "Landing · 黄色拼贴版 (2024) · 拼贴 + 动效",
-        body: "亮黄底拼贴艺术（西斯廷之手、墨镜人像、热气球、火星）+ Instrument Serif 斜体标题，GSAP 滚动驱动 + 三段 Lottie 动效。",
-        links: [
-          { label: "全屏打开 demo", href: "https://kuse-landing-collage.vercel.app" },
-        ],
+        href: "https://kuse-landing-collage.vercel.app",
+        shot: null,
+        desc: "亮黄底拼贴艺术（西斯廷之手、墨镜人像、热气球、火星）+ Instrument Serif 斜体标题，GSAP 滚动驱动 + 三段 Lottie 动效。",
       },
       { type: "video", label: "Kuse 1.0 Launch Video", yt: "nuCxUIsWjsI",
         role: "内容 + 分镜 + 动画效果 + 整体视频效果把控。找了外部专业摄影灯光团队协助录制。" },
@@ -146,10 +151,11 @@ export const FOLDERS = {
     label: "Junior",
     items: [
       {
-        type: "note",
+        type: "work",
         title: "Junior · junior.so · AI Employee 产品",
-        body: "「Hire your first AI employee」，可接入 Slack & Teams 的 AI 助手。Echo 做了它的设计 token 与组件库（Buttons / Fields / Badges / Cards），品牌色绿系 + Instrument Serif 展示标题 + Montserrat 正文。",
-        links: [{ label: "产品官网", href: "https://junior.so" }],
+        href: "https://junior.so",
+        shot: null,
+        desc: "「Hire your first AI employee」，可接入 Slack & Teams 的 AI 助手。Echo 做了它的设计 token 与组件库（Buttons / Fields / Badges / Cards），品牌色绿系 + Instrument Serif 展示标题 + Montserrat 正文。",
       },
       { type: "video", label: "Junior Launch Video", yt: "yj0Zb4vVDAo",
         role: "内容 + 分镜 + 动画效果 + 整体视频效果把控。我们自主拍摄。" },

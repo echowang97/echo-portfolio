@@ -165,6 +165,7 @@ function itemsHTML(items) {
   };
   for (const it of items) {
     if (it.type === "note") { flush(); out += noteHTML(it); }
+    else if (it.type === "work") { flush(); out += workHTML(it); }
     else bucket.push(gridItemHTML(it));
   }
   flush();
@@ -191,6 +192,29 @@ function gridItemHTML(it) {
   return "";
 }
 
+// 作品卡片：预览图 + 标题 + 描述 + 链接；双击卡片打开主站
+function workHTML(w) {
+  const shot = w.shot
+    ? `<img class="card-shot" src="${w.shot}" alt="${esc(w.title)}" loading="lazy">`
+    : `<div class="card-shot placeholder">预览图<br>后补</div>`;
+  const sub = w.sub ? ` <span class="card-sub">${esc(w.sub)}</span>` : "";
+  const badge = w.badge ? `<span class="badge">${esc(w.badge)}</span>` : "";
+  const desc = w.desc ? `<p class="card-desc">${esc(w.desc)}</p>` : "";
+  const credits = w.credits ? `<div class="credits">${esc(w.credits)}</div>` : "";
+  const extra = (w.links || [])
+    .map((l) => `<a class="chip-link" href="${l.href}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`)
+    .join("");
+  const hint = w.href ? `<span class="card-open-hint">双击打开 ↗</span>` : "";
+  return `<div class="work-card"${w.href ? ` data-open-href="${w.href}"` : ""}>
+    ${shot}
+    <div class="card-body">
+      <div class="card-title">${esc(w.title)}${sub}</div>
+      ${badge}${desc}${credits}
+      <div class="card-actions">${hint}${extra}</div>
+    </div>
+  </div>`;
+}
+
 function noteHTML(n) {
   const badge = n.badge ? `<span class="badge">${esc(n.badge)}</span>` : "";
   const status = n.status ? `<span class="status">status: ${esc(n.status)}</span>` : "";
@@ -208,16 +232,21 @@ function noteHTML(n) {
 
 // ---------- body 内事件绑定 ----------
 function wireBody(el, key) {
-  // 图标类（文件夹 / 快捷方式 / 图片缩略图）：单击选中、双击打开，与桌面图标一致
-  const gridItems = el.querySelectorAll(".grid-item");
-  const clearSel = () => gridItems.forEach((g) => g.classList.remove("selected"));
-  gridItems.forEach((g) => {
+  // 图标类与作品卡片：单击选中、双击打开，与桌面图标一致
+  const selectables = el.querySelectorAll(".grid-item, .work-card");
+  const clearSel = () => selectables.forEach((g) => g.classList.remove("selected"));
+  selectables.forEach((g) => {
     g.addEventListener("click", (e) => {
       if (g.tagName === "A") e.preventDefault(); // 快捷方式单击只选中，不跳转
       clearSel();
       g.classList.add("selected");
     });
   });
+  el.querySelectorAll(".work-card[data-open-href]").forEach((c) =>
+    c.addEventListener("dblclick", (e) => {
+      if (e.target.closest("a")) return; // 卡片内的次链接交给它自己
+      window.open(c.dataset.openHref, "_blank", "noopener");
+    }));
   el.querySelectorAll("[data-folder]").forEach((b) =>
     b.addEventListener("dblclick", () => openWindow("folder:" + b.dataset.folder)));
   el.querySelectorAll("[data-img]").forEach((b) =>

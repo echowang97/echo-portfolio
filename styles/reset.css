@@ -17,7 +17,7 @@ a { color: inherit; }
 
 /* 复古像素鼠标：默认箭头，可点元素用指点手（带系统 fallback） */
 html, body { cursor: url("../assets/cursors/arrow.png") 0 0, auto; }
-a, button, .icon, .grid-item, .social-chip, .start-btn, .start-list li,
+a, button, .icon, .grid-item, .work-card, .social-chip, .start-btn, .start-list li,
 .task-item, .ctrl, .btn-xp, [data-folder], [data-img], [data-yt],
 [data-open], [data-social], .note-block .links a, .lightbox-close, .copy-btn {
   cursor: url("../assets/cursors/pointer.png") 10 0, pointer;
