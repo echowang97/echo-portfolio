@@ -3,10 +3,10 @@
 .desktop {
   position: fixed;
   inset: 0;
-  /* XP "Bliss" 壁纸；渐变作兜底（图片缺失时不至于白屏） */
+  /* Bliss 恶搞版壁纸；渐变作兜底（图片缺失时不至于白屏）。原版 bliss.jpeg 仍在 assets/，想换回改这行即可 */
   background-color: #3f7ec9;
   background-image:
-    url("../assets/bliss.jpeg"),
+    url("../assets/bliss-echo.jpg"),
     linear-gradient(to bottom, #7aa7e8 0%, #5a8ed6 45%, #3f7ec9 60%, var(--grass) 60.5%, #3c7d33 75%, #62a84e 100%);
   background-size: cover, cover;
   background-position: center, center;
