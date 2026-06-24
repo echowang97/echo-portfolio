@@ -1,0 +1,67 @@
+/* ============================================================
+   CRT 老屏幕实验层（叠加，不影响点击/不糊字）
+   回滚：删掉本文件 + index.html 里的 <link> 和 #crt-screen 即可。
+   想调强弱：改下面的 opacity / rgba / 模糊半径。
+   ============================================================ */
+
+#crt-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;      /* 盖在所有窗口/任务栏之上，像一层玻璃 */
+  pointer-events: none; /* 点击穿透，不挡交互 */
+  overflow: hidden;
+}
+
+/* 扫描线（调淡） */
+#crt-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0 2px,
+    rgba(0, 0, 0, 0.028) 2px 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* 凸面感：中心玻璃高光（往外凸）+ 更重的桶形暗角 + 边缘红蓝散光 */
+#crt-screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(68% 52% at 50% 38%, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 62%),
+    radial-gradient(132% 116% at 50% 50%,
+      rgba(0, 0, 0, 0) 44%,
+      rgba(0, 0, 0, 0.18) 70%,
+      rgba(0, 0, 0, 0.40) 86%,
+      rgba(0, 0, 0, 0.72) 100%);
+  box-shadow:
+    inset 0 0 90px rgba(0, 0, 0, 0.55),
+    inset 9px 0 32px rgba(255, 70, 70, 0.09),    /* 左缘偏红散光 */
+    inset -9px 0 32px rgba(70, 150, 255, 0.09),   /* 右缘偏蓝散光 */
+    inset 0 0 150px rgba(150, 255, 200, 0.04);    /* 极弱绿辉 */
+}
+
+/* 缓慢滚动的亮带 + 极弱闪烁，增加“通电”感 */
+.crt-roll {
+  position: absolute;
+  left: 0; right: 0; height: 28%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.035) 50%, rgba(255, 255, 255, 0) 100%);
+  animation: crtRoll 7s linear infinite;
+}
+@keyframes crtRoll {
+  0%   { top: -30%; }
+  100% { top: 100%; }
+}
+#crt-screen { animation: crtFlicker 5s steps(40) infinite; }
+@keyframes crtFlicker {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.985; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #crt-screen { animation: none; }
+  .crt-roll { display: none; }
+}
