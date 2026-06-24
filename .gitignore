@@ -6,3 +6,14 @@ node_modules/
 Screenshot*.png
 截屏*.png
 .claude/
+assets/icons/_preview.html
+# 备选图标，留本地不入库
+assets/icons/memphis.cabinet.png
+assets/icons/memphis.tree.png
+assets/icons/memphis.database.png
+assets/icons/memphis.settings.png
+assets/icons/memphis.disk.png
+assets/icons/memphis.briefcase.png
+assets/icons/memphis.package.png
+assets/icons/memphis.files.png
+assets/icons/memphis.world.png

@@ -44,3 +44,8 @@ js/
 ## 部署
 
 Vercel：import 仓库，framework 选 Other，无构建命令，直接发布。
+
+## 素材与授权
+
+- **图标**：[Memphis icon theme](https://github.com/infofintech/memphis)（MIT），9x/XP 风重画，文件在 `assets/icons/`。
+- **壁纸**：`assets/bliss.jpeg` 为 Windows XP "Bliss"，微软版权，仅个人怀旧用途。如需可商用，替换为 CC 授权的仿 Bliss 图即可。
