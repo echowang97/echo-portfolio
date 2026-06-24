@@ -154,20 +154,47 @@ export const FOLDERS = {
         role: "内容 + 分镜 + 动画效果 + 整体视频效果把控。我们自主拍摄。" },
     ],
   },
+
+  // 回收站里的占位文件夹（内容后补，往对应 items 里加图即可）
+  "delysium-one": {
+    label: "Delysium ONE",
+    items: [
+      { type: "note", title: "Delysium ONE", status: "放弃 Launch / scrapped",
+        body: "〔一句话说明这是什么、做到哪一步、为什么没上，晚点补充。作品图之后补。〕" },
+    ],
+  },
+  sip: {
+    label: "sip",
+    items: [
+      { type: "note", title: "sip · Web3 · 0→1 视觉体系", status: "未 launch",
+        body: "〔一句话说明 + 作品图，之后补。〕" },
+    ],
+  },
+  nofa: {
+    label: "NOFA",
+    items: [
+      { type: "note", title: "NOFA · Web3 · 0→1 视觉体系", status: "未 launch",
+        body: "〔一句话说明 + 作品图，之后补。〕" },
+    ],
+  },
+  baidu: {
+    label: "百度游戏",
+    items: [
+      { type: "note", title: "百度游戏 · 2021 · 视觉设计（手游）", status: "更早的经历",
+        body: "校招进组，参与 S 级日漫 IP 手游发行，做 Banner / 预约页 / icon / LOGO 等；参与百度游戏 LOGO 设计。作品图之后补。" },
+    ],
+  },
 };
 
 // 回收站：没上线 / 过往的东西，诚实又有梗。
+// 回收站：用文件夹图标占位，双击进去看说明（作品图后补）
 export const RECYCLE = {
   label: "Recycle Bin",
-  items: [
-    { type: "note", title: "Delysium ONE", status: "放弃 Launch / scrapped",
-      body: "〔一句话说明这是什么、做到哪一步、为什么没上，晚点补充。〕" },
-    { type: "note", title: "sip · Web3 · 0→1 视觉体系", status: "未 launch",
-      body: "〔一句话说明 + 作品图，之后补。〕" },
-    { type: "note", title: "NOFA · Web3 · 0→1 视觉体系", status: "未 launch",
-      body: "〔一句话说明 + 作品图，之后补。〕" },
-    { type: "note", title: "百度游戏 · 2021 · 视觉设计（手游）", status: "更早的经历",
-      body: "校招进组，参与 S 级日漫 IP 手游发行，做 Banner / 预约页 / icon / LOGO 等；参与百度游戏 LOGO 设计。" },
+  children: [
+    { id: "delysium-one", type: "folder", label: "Delysium ONE", icon: "folder" },
+    { id: "sip",          type: "folder", label: "sip",          icon: "folder" },
+    { id: "nofa",         type: "folder", label: "NOFA",         icon: "folder" },
+    { id: "baidu",        type: "folder", label: "百度游戏",      icon: "folder" },
   ],
 };
 

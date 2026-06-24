@@ -111,7 +111,7 @@ function build(key) {
   if (key === "contact") return { title: "Contact", icon: "mail", bodyHTML: `<pre class="textpane">${linkifyContact(CONTACT)}</pre>` };
   if (key === "notepad") return { title: "readme.txt - Notepad", icon: "notepad", bodyHTML: `<pre class="textpane">${esc(NOTEPAD)}</pre>` };
   if (key === "resume")  return { title: "Resume", icon: "doc", bodyHTML: resumeHTML() };
-  if (key === "recycle") return { title: "Recycle Bin", icon: "recycle", wide: true, bodyHTML: itemsHTML(RECYCLE.items) };
+  if (key === "recycle") return { title: "Recycle Bin", icon: "recycle", wide: true, bodyHTML: gridHTML(RECYCLE.children) };
 
   if (key.startsWith("folder:")) {
     const id = key.slice(7);
