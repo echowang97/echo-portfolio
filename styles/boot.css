@@ -1,0 +1,52 @@
+/* ============ 开机自检画面 ============ */
+.boot {
+  position: fixed; inset: 0; z-index: 10000;
+  background: #000;
+  color: #c8c8c8;
+  font-family: var(--font-mono);
+  padding: 6vh 6vw;
+  overflow: hidden;
+  cursor: pointer;
+}
+.boot-logo {
+  font-family: var(--font-mono);
+  font-size: clamp(8px, 1.6vw, 15px);
+  line-height: 1.05;
+  color: #8fd96b;
+  white-space: pre;
+  margin-bottom: 4vh;
+  text-shadow: 0 0 8px rgba(120, 230, 110, .4);
+}
+.boot-log {
+  font-family: var(--font-mono);
+  font-size: clamp(13px, 1.5vw, 19px);
+  line-height: 1.4;
+  white-space: pre-wrap;
+  color: #cfcfcf;
+}
+.boot-log .cursor { animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.boot-skip {
+  position: absolute; bottom: 4vh; right: 6vw;
+  font-family: var(--font-mono);
+  font-size: 15px; color: #888;
+  border: 1px solid #444; padding: 4px 12px;
+}
+.boot-skip:hover { color: #fff; border-color: #888; }
+
+.boot.fade-out { animation: bootFade .35s ease forwards; }
+@keyframes bootFade { to { opacity: 0; visibility: hidden; } }
+
+/* 进桌面时 CRT 一闪 */
+.desktop.power-on { animation: powerOn .45s ease; }
+@keyframes powerOn {
+  0%   { filter: brightness(2.5) contrast(2); transform: scaleY(.004); }
+  35%  { transform: scaleY(1); filter: brightness(1.6); }
+  100% { filter: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktop.power-on { animation: none; }
+  .boot.fade-out { animation: none; opacity: 0; visibility: hidden; }
+}

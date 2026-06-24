@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ECHO-OS · Echo Wang</title>
+  <meta name="description" content="Echo Wang · Design Director, Chief of Staff, Creative Developer. A retro desktop portfolio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/reset.css" />
+  <link rel="stylesheet" href="styles/desktop.css" />
+  <link rel="stylesheet" href="styles/window.css" />
+  <link rel="stylesheet" href="styles/boot.css" />
+</head>
+<body>
+  <!-- 开机自检 -->
+  <div id="boot" class="boot">
+    <pre id="boot-logo" class="boot-logo"></pre>
+    <pre id="boot-log" class="boot-log"></pre>
+    <button id="boot-skip" class="boot-skip">SKIP &gt;</button>
+  </div>
+
+  <!-- 桌面 -->
+  <main id="desktop" class="desktop" hidden>
+    <ul id="icons" class="icons"></ul>
+    <div id="windows" class="windows"></div>
+
+    <!-- 任务栏 -->
+    <footer class="taskbar">
+      <button id="start-btn" class="start-btn">
+        <span class="start-flag"></span> start
+      </button>
+      <div id="taskbar-items" class="taskbar-items"></div>
+      <div class="tray">
+        <span id="clock" class="clock"></span>
+      </div>
+    </footer>
+
+    <!-- Start 菜单 -->
+    <div id="start-menu" class="start-menu" hidden>
+      <div class="start-head">
+        <span class="start-avatar">E</span>
+        <span class="start-user">Echo Wang</span>
+      </div>
+      <ul id="start-list" class="start-list"></ul>
+      <div class="start-foot">// built by echo · pixels since '22</div>
+    </div>
+  </main>
+
+  <!-- 图片放大遮罩 -->
+  <div id="lightbox" class="lightbox" hidden>
+    <img id="lightbox-img" alt="" />
+    <button id="lightbox-close" class="lightbox-close" aria-label="close">&times;</button>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

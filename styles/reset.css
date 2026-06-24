@@ -1,0 +1,36 @@
+/* minimal reset */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: "Poppins", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  user-select: none;
+}
+img { display: block; max-width: 100%; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
+a { color: inherit; }
+/* hidden 属性必须压过组件的 display 设定（lightbox 用了 display:grid） */
+[hidden] { display: none !important; }
+
+:root {
+  /* XP-ish palette, 但避开 AI 渐变 */
+  --xp-blue:   #245edb;
+  --xp-blue-d: #1941a5;
+  --xp-green:  #3a8a2f;
+  --title-1:   #2e64d6;
+  --title-2:   #1c46b3;
+  --win-bg:    #ece9d8;
+  --win-border:#0a246a;
+  --face:      #ece9d8;
+  --face-d:    #c4c0b6;
+  --text:      #1a1a1a;
+  --desktop-1: #5a8ed6;
+  --desktop-2: #245edb;
+  --grass:     #4a8f3c;
+  /* fonts */
+  --font-ui:   "Poppins", system-ui, sans-serif;
+  --font-mono: "VT323", "Courier New", monospace;
+}

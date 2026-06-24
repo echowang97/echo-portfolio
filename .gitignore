@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+*.log
+.vercel
+# 调试截图别进仓
+Screenshot*.png
+截屏*.png
+.claude/
