@@ -19,7 +19,7 @@ const notify = (type, detail) =>
 export function openWindow(key) {
   if (open.has(key)) { focusWindow(key); return; }
 
-  const { title, icon, bodyHTML, wide } = build(key);
+  const { title, icon, bodyHTML, width } = build(key);
   const el = document.createElement("section");
   el.className = "window";
   el.dataset.key = key;
@@ -29,7 +29,7 @@ export function openWindow(key) {
   offset++;
   el.style.left = baseX + "px";
   el.style.top = baseY + "px";
-  el.style.width = (wide ? 560 : 420) + "px";
+  el.style.width = (width || 440) + "px";
 
   el.innerHTML = `
     <header class="title-bar">
@@ -106,19 +106,82 @@ function makeDraggable(handle, el) {
 
 // ---------- 内容构建 ----------
 function build(key) {
-  if (key === "about")   return { title: "About Me", icon: "monitor", wide: true, bodyHTML: aboutHTML() };
-  if (key === "projects")return { title: "Projects", icon: "folder", bodyHTML: gridHTML(PROJECTS.children) };
-  if (key === "contact") return { title: "Contact", icon: "mail", bodyHTML: `<pre class="textpane">${linkifyContact(CONTACT)}</pre>` };
-  if (key === "notepad") return { title: "readme.txt - Notepad", icon: "notepad", bodyHTML: `<pre class="textpane">${esc(NOTEPAD)}</pre>` };
-  if (key === "resume")  return { title: "Resume", icon: "doc", bodyHTML: resumeHTML() };
-  if (key === "recycle") return { title: "Recycle Bin", icon: "recycle", wide: true, bodyHTML: gridHTML(RECYCLE.children) };
+  if (key === "about")   return { title: "About Me", icon: "monitor", width: 560, bodyHTML: aboutHTML() };
+  if (key === "projects")return { title: "Projects", icon: "folder", width: 380, bodyHTML: gridHTML(PROJECTS.children) };
+  if (key === "contact") return { title: "Contact", icon: "mail", width: 440, bodyHTML: `<pre class="textpane">${linkifyContact(CONTACT)}</pre>` };
+  if (key === "notepad") return { title: "readme.txt - Notepad", icon: "notepad", width: 440, bodyHTML: `<pre class="textpane">${esc(NOTEPAD)}</pre>` };
+  if (key === "resume")  return { title: "Resume", icon: "doc", width: 460, bodyHTML: resumeHTML() };
+  if (key === "recycle") return { title: "Recycle Bin", icon: "recycle", width: 560, bodyHTML: gridHTML(RECYCLE.children) };
+
+  if (key.startsWith("gallery:")) {
+    const [, proj, idxStr] = key.split(":");
+    const f = FOLDERS[proj];
+    const pile = f?.piles?.[+idxStr];
+    return { title: `${f?.label || ""} · ${pile?.label || ""}`, icon: "folder", width: 820, bodyHTML: galleryHTML(pile) };
+  }
 
   if (key.startsWith("folder:")) {
     const id = key.slice(7);
     const f = FOLDERS[id];
-    return { title: f.label, icon: "folder", wide: true, bodyHTML: itemsHTML(f.items) };
+    const body = f.piles ? folderPilesHTML(f.piles, id) : itemsHTML(f.items);
+    return { title: f.label, icon: "folder", width: f.piles ? 660 : 560, bodyHTML: body };
   }
-  return { title: key, icon: "doc", bodyHTML: "" };
+  return { title: key, icon: "doc", width: 440, bodyHTML: "" };
+}
+
+// 缩略图地址：图片直接用 img，视频用 YouTube 封面
+function thumbSrc(it) {
+  return it?.img || (it?.yt ? `https://img.youtube.com/vi/${it.yt}/mqdefault.jpg` : null);
+}
+
+// 文件夹里的「图堆」：每坨叠放几张图，双击进 gallery
+function folderPilesHTML(piles, proj) {
+  return `<div class="piles">${piles.map((p, i) => pileHTML(p, proj, i)).join("")}</div>`;
+}
+function pileHTML(p, proj, i) {
+  // 三层叠放：顶层是第一张，下面两层往后排（没有就用空框占位）
+  const layers = [2, 1, 0].map((k) => {
+    const src = thumbSrc((p.items || [])[k]);
+    return src ? `<img src="${src}" loading="lazy" alt="">` : `<span class="ph"></span>`;
+  }).join("");
+  const n = (p.items || []).length;
+  const count = n ? `<span class="pile-count">${n}</span>` : `<span class="pile-count empty">空</span>`;
+  return `<button class="pile" data-gallery="${proj}:${i}" title="${esc(p.label)}（双击打开）">
+    <span class="pile-stack">${layers}</span>
+    <span class="pile-label">${esc(p.label)}${count}</span>
+  </button>`;
+}
+
+// gallery view：左大图、右描述、下缩略图条
+function galleryMainHTML(it, kind) {
+  if (!it) return `<div class="g-empty">还没有内容<br>稍后补图</div>`;
+  if (it.yt) {
+    return `<iframe class="g-frame" src="https://www.youtube.com/embed/${it.yt}?rel=0" title="${esc(it.caption || "")}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+  }
+  return `<img class="g-img" src="${it.img}" alt="${esc(it.caption || "")}">`;
+}
+function galleryActions(it) {
+  if (!it) return "";
+  if (it.href) return `<a class="chip-link" href="${it.href}" target="_blank" rel="noopener">打开网站 ↗</a>`;
+  if (it.yt) return `<a class="chip-link" href="https://www.youtube.com/watch?v=${it.yt}" target="_blank" rel="noopener">在 YouTube 打开 ↗</a>`;
+  return "";
+}
+function galleryHTML(pile) {
+  if (!pile) return "<p>（空）</p>";
+  const items = pile.items || [];
+  const first = items[0];
+  const strip = items.map((it, i) =>
+    `<button class="g-thumb${i === 0 ? " active" : ""}" data-gidx="${i}"><img src="${thumbSrc(it)}" loading="lazy" alt=""><span class="g-num">${i + 1}</span></button>`).join("");
+  return `<div class="gallery" data-kind="${pile.kind || "image"}">
+    <div class="gallery-main" id="gmain">${galleryMainHTML(first, pile.kind)}</div>
+    <div class="gallery-desc">
+      <div class="g-title">${esc(pile.label)}</div>
+      <p class="g-desc">${esc(pile.desc || "〔补一段描述〕")}</p>
+      <div class="g-caption" id="gcap">${first ? esc(first.caption || "") : ""}</div>
+      <div class="g-actions" id="gact">${galleryActions(first)}</div>
+    </div>
+  </div>
+  ${items.length ? `<div class="gallery-strip">${strip}</div>` : ""}`;
 }
 
 function aboutHTML() {
@@ -233,8 +296,27 @@ function noteHTML(n) {
 
 // ---------- body 内事件绑定 ----------
 function wireBody(el, key) {
+  // 图堆 pile：单击选中、双击进 gallery
+  el.querySelectorAll("[data-gallery]").forEach((b) =>
+    b.addEventListener("dblclick", () => openWindow("gallery:" + b.dataset.gallery)));
+
+  // gallery 缩略图切换
+  if (key.startsWith("gallery:")) {
+    const [, proj, idxStr] = key.split(":");
+    const pile = FOLDERS[proj]?.piles?.[+idxStr];
+    const items = pile?.items || [];
+    el.querySelectorAll(".g-thumb").forEach((t) =>
+      t.addEventListener("click", () => {
+        const it = items[+t.dataset.gidx];
+        el.querySelector("#gmain").innerHTML = galleryMainHTML(it, pile.kind);
+        el.querySelector("#gcap").textContent = it.caption || "";
+        el.querySelector("#gact").innerHTML = galleryActions(it);
+        el.querySelectorAll(".g-thumb").forEach((x) => x.classList.toggle("active", x === t));
+      }));
+  }
+
   // 图标类与作品卡片：单击选中、双击打开，与桌面图标一致
-  const selectables = el.querySelectorAll(".grid-item, .work-card");
+  const selectables = el.querySelectorAll(".grid-item, .work-card, .pile");
   const clearSel = () => selectables.forEach((g) => g.classList.remove("selected"));
   selectables.forEach((g) => {
     g.addEventListener("click", (e) => {

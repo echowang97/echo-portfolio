@@ -161,6 +161,82 @@
   color: #fff; font-size: 16px; text-shadow: 0 1px 4px rgba(0,0,0,.8);
 }
 
+/* 图堆 pile：一坨叠放的图 + 标签 */
+.piles {
+  display: flex; flex-wrap: wrap;
+  gap: 22px 18px;
+  padding: 10px 6px;
+  align-content: flex-start;
+}
+.pile {
+  width: 158px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  padding: 6px;
+  background: none;
+}
+.pile-stack { position: relative; width: 140px; height: 116px; }
+.pile-stack > * {
+  position: absolute; left: 50%; top: 50%;
+  width: 104px; height: 78px;
+  margin: -39px 0 0 -52px;
+  background: #fff;
+  border: 1px solid #d8d4c8;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.16);
+  object-fit: cover;
+}
+.pile-stack > :nth-child(1) { transform: rotate(-9deg) translate(-7px, 5px); }
+.pile-stack > :nth-child(2) { transform: rotate(7deg) translate(9px, -1px); }
+.pile-stack > :nth-child(3) { transform: rotate(-2deg); z-index: 2; }
+.pile-stack .ph { background: repeating-linear-gradient(45deg, #f3f1ea 0 6px, #ebe8df 6px 12px); border-style: dashed; }
+.pile:hover .pile-stack > :nth-child(3) { transform: rotate(-2deg) translateY(-4px); }
+.pile.selected .pile-stack > :nth-child(3) { box-shadow: 0 0 0 2px var(--xp-blue), 0 2px 6px rgba(0,0,0,.2); }
+.pile-label { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text); }
+.pile-count {
+  min-width: 16px; padding: 0 5px; height: 16px; line-height: 16px;
+  font-size: 11px; text-align: center; color: #fff;
+  background: var(--xp-blue); border-radius: 8px;
+}
+.pile-count.empty { background: #b3aea2; }
+
+/* gallery view：左大图、右描述、下缩略图条 */
+.gallery { display: flex; gap: 18px; }
+.gallery-main {
+  flex: 1.5; min-width: 0;
+  aspect-ratio: 16 / 10;
+  display: grid; place-items: center;
+  background: #f3f1ea;
+  border: 1px solid var(--face-d);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.gallery-main .g-img { width: 100%; height: 100%; object-fit: contain; background: #fff; }
+.gallery-main .g-frame { width: 100%; height: 100%; border: 0; }
+.gallery-main .g-empty { color: #9a958a; font-size: 13px; text-align: center; line-height: 1.6; }
+.gallery-desc { flex: 1; min-width: 0; }
+.gallery-desc .g-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.gallery-desc .g-desc { font-size: 13px; line-height: 1.7; }
+.gallery-desc .g-caption { font-size: 12px; color: #777; margin-top: 10px; }
+.gallery-desc .g-actions { margin-top: 10px; }
+.gallery-strip { display: flex; gap: 8px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+.g-thumb {
+  position: relative; flex: none;
+  width: 92px; height: 58px;
+  background: #fff; border: 1px solid var(--face-d); border-radius: 3px;
+  overflow: hidden; padding: 0;
+}
+.g-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.g-thumb.active { border-color: var(--xp-blue); box-shadow: inset 0 0 0 2px var(--xp-blue); }
+.g-thumb .g-num {
+  position: absolute; left: 3px; top: 3px;
+  min-width: 15px; height: 15px; line-height: 15px; padding: 0 3px;
+  font-size: 10px; text-align: center; color: #fff;
+  background: rgba(0,0,0,.55); border-radius: 3px;
+}
+@media (max-width: 640px) {
+  .gallery { flex-direction: column; }
+}
+
 /* 作品卡片：预览图 + 描述 + 链接 */
 .work-card {
   display: flex;

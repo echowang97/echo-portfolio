@@ -75,90 +75,91 @@ export const PROJECTS = {
 };
 
 export const FOLDERS = {
+  // 项目文件夹用「图堆 piles」：每坨是一个分类，双击进 gallery view。
+  // 缺图缺文先留占位（items 为空 / desc 带〔〕），后面逐个补。
   delysium: {
     label: "Delysium",
-    items: [
-      { type: "work", title: "delysium.com", sub: "官网", href: "https://delysium.com", shot: "assets/covers/delysium.png",
-        desc: "Delysium 品牌官网。〔草稿：补一句产品定位，待你确认〕" },
-      { type: "work", title: "dna.delysium.com", href: "https://dna.delysium.com/", shot: "assets/covers/dna_delysium.png",
-        desc: "Delysium DNA。〔草稿：补一句这是什么，待你确认〕" },
-      { type: "work", title: "dashboard.delysium.com", href: "https://dashboard.delysium.com", shot: "assets/covers/delysium_dashboard.png",
-        desc: "Delysium Dashboard，用户/数据面板。〔草稿：补一句用途，待你确认〕" },
+    piles: [
       {
-        type: "work",
-        title: "Delysium Whitepaper · 2022 · interactive / 像素叙事",
-        badge: "🏆 Awwwards Honorable Mention",
-        href: "https://delysium-l7kmeq3yz-rct-ai.vercel.app/whitepaper?production",
-        shot: "assets/covers/delysium_whitepaper.png",
-        desc: "横版步行的交互式白皮书。按任意键进入后操控角色走过赛博朋克像素街景，沿途的 NPC（META-STEPHENSON、OMNI-KOJIMA…）逐段讲述 Delysium 的世界观。",
-        credits: "Credits: rct AI · XerLee · yuxiao-hu · Echo Wang · Ollie · Shule Hsiung · gogu · Cao Shui",
-        links: [
-          { label: "Awwwards 页", href: "https://www.awwwards.com/sites/delysium-whitepaper" },
+        id: "site", label: "官网", kind: "image",
+        desc: "Delysium 官网 / DNA / Dashboard。〔草稿：补一句定位，待你确认〕",
+        items: [
+          { img: "assets/covers/delysium.png", caption: "delysium.com · 官网", href: "https://delysium.com" },
+          { img: "assets/covers/dna_delysium.png", caption: "dna.delysium.com", href: "https://dna.delysium.com/" },
+          { img: "assets/covers/delysium_dashboard.png", caption: "dashboard.delysium.com", href: "https://dashboard.delysium.com" },
         ],
       },
-      ...["00","03","06","09","12","16","20","24"].map((n) => ({
-        type: "image",
-        label: `walk-${n}`,
-        src: `https://kuse-studio-six.vercel.app/archive/delysium-whitepaper/screens/walk-${n}.png`,
-      })),
+      {
+        id: "whitepaper", label: "Whitepaper", kind: "image",
+        desc: "横版步行的交互式白皮书。按任意键进入后操控角色走过赛博朋克像素街景，沿途 NPC（META-STEPHENSON、OMNI-KOJIMA…）逐段讲述世界观。🏆 Awwwards Honorable Mention。",
+        items: ["00", "03", "06", "09", "12", "16", "20", "24"].map((n, k) => ({
+          img: `https://kuse-studio-six.vercel.app/archive/delysium-whitepaper/screens/walk-${n}.png`,
+          caption: `walk-${n}`,
+          href: k === 0 ? "https://delysium-l7kmeq3yz-rct-ai.vercel.app/whitepaper?production" : undefined,
+        })),
+      },
+      { id: "poster", label: "海报 / 物料", kind: "image", desc: "〔Delysium 海报、物料，后补〕", items: [] },
     ],
   },
 
   kuse: {
     label: "Kuse",
-    items: [
-      { type: "work", title: "kuse.ai", sub: "现在的官网", href: "https://kuse.ai", shot: "assets/covers/kuse_ai.png",
-        desc: "Kuse 现在的官网。" },
-      { type: "work", title: "app.kuse.ai", sub: "产品本体", href: "https://app.kuse.ai", shot: "assets/covers/app_kuse.png",
-        desc: "Kuse 产品本体，服务 170 个国家、50 万注册用户的 AI 协作工作台。" },
+    piles: [
       {
-        type: "work",
-        title: "Landing · staging (2026) · 滚动叙事",
-        href: "https://www-staging.kuse.ai/",
-        shot: "assets/covers/kuse_staging.png",
-        desc: "滚动驱动的产品落地页，点阵背景上逐屏演示「如何与 AI 协作」。做了可交互 WACZ 网页存档，原站下线也能重放。",
-        links: [
-          { label: "全屏重放（存档）", href: "https://kuse-studio-six.vercel.app/archive/replay/kuse-landing.html" },
+        id: "site", label: "官网", kind: "image",
+        desc: "Kuse 各代官网 / Landing 预览。",
+        items: [
+          { img: "assets/covers/kuse_ai.png", caption: "kuse.ai · 现在的官网", href: "https://kuse.ai" },
+          { img: "assets/covers/kuse_staging.png", caption: "Landing · staging (2026) · 滚动叙事", href: "https://www-staging.kuse.ai/" },
+          { img: "assets/covers/kuse_webflow.png", caption: "Landing · Webflow (2025) · 快照", href: "https://kuse-studio-six.vercel.app/archive/webflow-site/kuse.html" },
+          { img: "assets/covers/kuse_collage.png", caption: "Landing · 黄色拼贴版 (2024) · 拼贴 + 动效", href: "https://kuse-landing-collage.vercel.app" },
         ],
       },
       {
-        type: "work",
-        title: "Landing · Webflow (2025) · Webflow 快照",
-        href: "https://kuse-studio-six.vercel.app/archive/webflow-site/kuse.html",
-        shot: "assets/covers/kuse_webflow.png",
-        desc: "「The AI Knowledge Base for Creating Docs, Webpages & Presentations」卡片叠放首屏 + 滚动叙事。整站静态快照存档。",
-        links: [
-          { label: "原 Webflow 站", href: "https://kuse-usecase.webflow.io/kuse" },
+        id: "app", label: "Kuse App", kind: "image",
+        desc: "Kuse 产品本体，服务 170 个国家、50 万注册用户的 AI 协作工作台。〔app 界面图后补〕",
+        items: [
+          { img: "assets/covers/app_kuse.png", caption: "app.kuse.ai", href: "https://app.kuse.ai" },
+        ],
+      },
+      { id: "poster", label: "海报", kind: "image", desc: "〔Kuse 海报，后补〕", items: [] },
+      {
+        id: "video", label: "Video", kind: "video",
+        desc: "Kuse 发布视频。Echo 负责内容 / 分镜 / 动效 / 整体把控。",
+        items: [
+          { yt: "nuCxUIsWjsI", caption: "Kuse 1.0 Launch Video · 内容 + 分镜 + 动效 + 整体把控，外部摄影灯光团队协助录制" },
+          { yt: "SUtAt2GvSeg", caption: "A Boring Product Introduction · 出镜 + 内容 + 分镜 + 动效，含妆造" },
+          { yt: "zzu9PzcS5XQ", caption: "Kuse 2.0 Launch Video · 内容 + 分镜 + 动效 + 整体把控" },
         ],
       },
       {
-        type: "work",
-        title: "Landing · 黄色拼贴版 (2024) · 拼贴 + 动效",
-        href: "https://kuse-landing-collage.vercel.app",
-        shot: "assets/covers/kuse_collage.png",
-        desc: "亮黄底拼贴艺术（西斯廷之手、墨镜人像、热气球、火星）+ Instrument Serif 斜体标题，GSAP 滚动驱动 + 三段 Lottie 动效。",
+        id: "material", label: "物料", kind: "image",
+        desc: "Kuse 周边物料，含 kuse.love（Kuse Shop）。〔后补更多〕",
+        items: [
+          { img: "assets/covers/kuse_shop.png", caption: "kuse.love · Kuse Shop", href: "https://kuse.love" },
+        ],
       },
-      { type: "video", label: "Kuse 1.0 Launch Video", yt: "nuCxUIsWjsI",
-        role: "内容 + 分镜 + 动画效果 + 整体视频效果把控。找了外部专业摄影灯光团队协助录制。" },
-      { type: "video", label: "Kuse: A Boring Product Introduction", yt: "SUtAt2GvSeg",
-        role: "出镜 + 内容 + 分镜 + 动画效果 + 整体视频效果把控。合作摄影工作室拍摄，含妆造。" },
-      { type: "video", label: "Kuse 2.0 Launch Video", yt: "zzu9PzcS5XQ",
-        role: "内容 + 分镜 + 动画效果 + 整体视频效果把控。合作摄影工作室拍摄。" },
     ],
   },
 
   junior: {
     label: "Junior",
-    items: [
+    piles: [
       {
-        type: "work",
-        title: "Junior · junior.so · AI Employee 产品",
-        href: "https://junior.so",
-        shot: "assets/covers/junior.png",
-        desc: "「Hire your first AI employee」，可接入 Slack & Teams 的 AI 助手。Echo 做了它的设计 token 与组件库（Buttons / Fields / Badges / Cards），品牌色绿系 + Instrument Serif 展示标题 + Montserrat 正文。",
+        id: "site", label: "官网", kind: "image",
+        desc: "「Hire your first AI employee」，可接入 Slack & Teams 的 AI 助手。",
+        items: [{ img: "assets/covers/junior.png", caption: "junior.so", href: "https://junior.so" }],
       },
-      { type: "video", label: "Junior Launch Video", yt: "yj0Zb4vVDAo",
-        role: "内容 + 分镜 + 动画效果 + 整体视频效果把控。我们自主拍摄。" },
+      {
+        id: "video", label: "Video", kind: "video",
+        desc: "Junior 发布视频，Echo 负责内容 / 分镜 / 动效 / 整体把控，自主拍摄。",
+        items: [{ yt: "yj0Zb4vVDAo", caption: "Junior Launch Video" }],
+      },
+      {
+        id: "design", label: "设计系统 / 物料", kind: "image",
+        desc: "设计 token 与组件库（Buttons / Fields / Badges / Cards），绿系品牌色 + Instrument Serif 展示标题 + Montserrat 正文。〔组件图后补〕",
+        items: [],
+      },
     ],
   },
 
