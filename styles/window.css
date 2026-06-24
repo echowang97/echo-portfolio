@@ -60,7 +60,22 @@
 }
 
 /* ---- About ---- */
-.about-head { margin-bottom: 14px; }
+.about-head { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 14px; }
+.about-meta { flex: 1; min-width: 0; }
+.about-photo {
+  flex: none;
+  width: 104px; height: 128px;
+  object-fit: cover;
+  background: var(--face);
+  border: 1px solid #b8b4a8;
+  box-shadow: inset 0 0 0 3px #fff, 1px 1px 4px rgba(0,0,0,.18);
+  border-radius: 2px;
+}
+.about-photo.placeholder {
+  display: grid; place-items: center;
+  font-size: 12px; line-height: 1.5; color: #9a958a; text-align: center;
+  border-style: dashed;
+}
 .about-name { font-size: 22px; font-weight: 600; }
 .about-name small { font-size: 16px; color: #666; font-weight: 400; margin-left: 8px; }
 .about-roles { font-family: var(--font-mono); font-size: 16px; color: var(--xp-blue); }
@@ -78,15 +93,18 @@
 .social-chip:hover { background: #fff; border-color: var(--xp-blue); }
 .social-chip b { font-weight: 600; }
 
-.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 18px 0; }
-.stat {
-  padding: 12px;
+/* 紧凑数字条：4 个小项一行，分隔线分开，不再是大方块 */
+.stats {
+  display: flex; flex-wrap: wrap;
+  margin: 14px 0;
   background: var(--face);
   border: 1px solid var(--face-d);
   border-radius: 4px;
 }
-.stat .v { font-size: 22px; font-weight: 600; color: var(--xp-blue); line-height: 1.1; }
-.stat .l { font-size: 12px; color: #555; margin-top: 4px; }
+.stat { flex: 1 1 0; min-width: 110px; padding: 8px 12px; border-left: 1px solid var(--face-d); }
+.stat:first-child { border-left: none; }
+.stat .v { font-size: 15px; font-weight: 600; color: var(--xp-blue); line-height: 1.2; }
+.stat .l { font-size: 11px; color: #666; margin-top: 1px; }
 
 .bio p { margin-bottom: 12px; }
 

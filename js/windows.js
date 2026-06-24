@@ -127,11 +127,17 @@ function aboutHTML() {
   const social = SOCIAL.map((s) =>
     `<button class="social-chip" data-social="${s.key}"><b>${esc(s.label)}</b> ${esc(s.value)}</button>`).join("");
   const bio = ABOUT.bio.map((p) => `<p>${esc(p)}</p>`).join("");
+  const photo = ABOUT.photo
+    ? `<img class="about-photo" src="${ABOUT.photo}" alt="${ABOUT.name}">`
+    : `<div class="about-photo placeholder">照片<br>放这里</div>`;
   return `
     <div class="about-head">
-      <div class="about-name">${ABOUT.name}<small>${ABOUT.nameZh}</small></div>
-      <div class="about-roles">${esc(ABOUT.roles)}</div>
-      <div class="about-loc">${esc(ABOUT.location)}</div>
+      ${photo}
+      <div class="about-meta">
+        <div class="about-name">${ABOUT.name}<small>${ABOUT.nameZh}</small></div>
+        <div class="about-roles">${esc(ABOUT.roles)}</div>
+        <div class="about-loc">${esc(ABOUT.location)}</div>
+      </div>
     </div>
     <div class="social-bar">${social}</div>
     <div class="stats">${stats}</div>
