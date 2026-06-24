@@ -105,6 +105,27 @@ export function initLightbox() {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !box.hidden) close(); });
 }
 
+// CRT 屏幕效果开关（桌面右上角，状态存 localStorage，默认开）
+export function initCrtToggle() {
+  const btn = document.getElementById("crt-toggle");
+  if (!btn) return;
+  const KEY = "echo-crt";
+  btn.hidden = false; // 进桌面后再显示（开机自检时不出现）
+  let on = true;
+  try { const v = localStorage.getItem(KEY); if (v !== null) on = v === "on"; } catch {}
+  const apply = () => {
+    document.body.classList.toggle("crt-off", !on);
+    btn.classList.toggle("on", on);
+    btn.setAttribute("aria-pressed", String(on));
+  };
+  apply();
+  btn.addEventListener("click", () => {
+    on = !on;
+    try { localStorage.setItem(KEY, on ? "on" : "off"); } catch {}
+    apply();
+  });
+}
+
 // 视频弹窗关闭（清空 iframe src 以停止播放）
 export function initVideoModal() {
   const m = document.getElementById("video-modal");

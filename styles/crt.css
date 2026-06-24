@@ -65,3 +65,32 @@
   #crt-screen { animation: none; }
   .crt-roll { display: none; }
 }
+
+/* 关掉时隐藏整层 */
+body.crt-off #crt-screen { display: none; }
+
+/* 桌面右上角的开关 */
+.crt-toggle {
+  position: fixed;
+  top: 10px; right: 12px;
+  z-index: 100001;          /* 在 CRT 层之上，可点 */
+  display: flex; align-items: center; gap: 7px;
+  padding: 5px 11px;
+  font-family: var(--font-mono); font-size: 13px; letter-spacing: .5px;
+  color: #dfe7df;
+  background: rgba(18, 26, 20, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.crt-toggle:hover { background: rgba(18, 26, 20, 0.78); }
+.crt-led {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #3a4a3e;
+}
+.crt-toggle.on .crt-led {
+  background: #6cf08a;
+  box-shadow: 0 0 7px rgba(108, 240, 138, 0.9);
+}
