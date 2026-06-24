@@ -7,6 +7,11 @@
   padding: 6vh 6vw;
   overflow: hidden;
   cursor: pointer;
+  /* 内容整体居中（块居中，文字内部仍左对齐保持 ASCII 对齐） */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .boot-logo {
   font-family: var(--font-mono);
@@ -14,6 +19,7 @@
   line-height: 1.05;
   color: #8fd96b;
   white-space: pre;
+  text-align: left;
   margin-bottom: 4vh;
   text-shadow: 0 0 8px rgba(120, 230, 110, .4);
 }
@@ -22,7 +28,9 @@
   font-size: clamp(13px, 1.5vw, 19px);
   line-height: 1.4;
   white-space: pre-wrap;
+  text-align: left;
   color: #cfcfcf;
+  min-height: 15em; /* 预留高度，打字时整体不跳动 */
 }
 .boot-log .cursor { animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
