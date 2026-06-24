@@ -199,6 +199,7 @@ function workHTML(w) {
     : `<div class="card-shot placeholder">预览图<br>后补</div>`;
   const sub = w.sub ? ` <span class="card-sub">${esc(w.sub)}</span>` : "";
   const badge = w.badge ? `<span class="badge">${esc(w.badge)}</span>` : "";
+  const status = w.status ? `<span class="status">status: ${esc(w.status)}</span>` : "";
   const desc = w.desc ? `<p class="card-desc">${esc(w.desc)}</p>` : "";
   const credits = w.credits ? `<div class="credits">${esc(w.credits)}</div>` : "";
   const extra = (w.links || [])
@@ -209,7 +210,7 @@ function workHTML(w) {
     ${shot}
     <div class="card-body">
       <div class="card-title">${esc(w.title)}${sub}</div>
-      ${badge}${desc}${credits}
+      ${badge}${status}${desc}${credits}
       <div class="card-actions">${hint}${extra}</div>
     </div>
   </div>`;

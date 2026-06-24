@@ -192,6 +192,7 @@
 .card-sub { font-weight: 400; color: #888; font-size: 12px; }
 .card-desc { font-size: 13px; margin: 6px 0 0; }
 .work-card .badge { display: inline-block; font-size: 12px; color: var(--xp-green); margin-top: 4px; }
+.work-card .status { display: inline-block; font-size: 11px; font-family: var(--font-mono); color: #b03030; margin-top: 4px; }
 .work-card .credits { font-size: 12px; color: #777; margin-top: 6px; }
 .card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 8px; }
 .card-open-hint { font-size: 12px; font-weight: 500; color: var(--xp-blue); }
