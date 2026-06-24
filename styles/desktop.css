@@ -3,9 +3,14 @@
 .desktop {
   position: fixed;
   inset: 0;
-  /* XP 蓝天草地：纯 CSS 渐变（蓝天 + 一道草坡），不用图片，不走 AI 霓虹 */
-  background:
+  /* XP "Bliss" 壁纸；渐变作兜底（图片缺失时不至于白屏） */
+  background-color: #3f7ec9;
+  background-image:
+    url("../assets/bliss.jpeg"),
     linear-gradient(to bottom, #7aa7e8 0%, #5a8ed6 45%, #3f7ec9 60%, var(--grass) 60.5%, #3c7d33 75%, #62a84e 100%);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
 }
 
 /* ---- 桌面图标 ---- */
