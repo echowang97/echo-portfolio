@@ -202,12 +202,26 @@ function noteHTML(n) {
 
 // ---------- body 内事件绑定 ----------
 function wireBody(el, key) {
+  // 图标类（文件夹 / 快捷方式 / 图片缩略图）：单击选中、双击打开，与桌面图标一致
+  const gridItems = el.querySelectorAll(".grid-item");
+  const clearSel = () => gridItems.forEach((g) => g.classList.remove("selected"));
+  gridItems.forEach((g) => {
+    g.addEventListener("click", (e) => {
+      if (g.tagName === "A") e.preventDefault(); // 快捷方式单击只选中，不跳转
+      clearSel();
+      g.classList.add("selected");
+    });
+  });
   el.querySelectorAll("[data-folder]").forEach((b) =>
-    b.addEventListener("click", () => openWindow("folder:" + b.dataset.folder)));
+    b.addEventListener("dblclick", () => openWindow("folder:" + b.dataset.folder)));
+  el.querySelectorAll("[data-img]").forEach((b) =>
+    b.addEventListener("dblclick", () => showLightbox(b.dataset.img)));
+  el.querySelectorAll("a.grid-item").forEach((a) =>
+    a.addEventListener("dblclick", () => window.open(a.href, "_blank", "noopener")));
+
+  // 正文里的文本按钮 / 超链接：保持单击
   el.querySelectorAll("[data-open]").forEach((b) =>
     b.addEventListener("click", () => openWindow(b.dataset.open)));
-  el.querySelectorAll("[data-img]").forEach((b) =>
-    b.addEventListener("click", () => showLightbox(b.dataset.img)));
   el.querySelectorAll("[data-social]").forEach((b) =>
     b.addEventListener("click", (e) => { e.stopPropagation(); showSocial(b.dataset.social, b); }));
 }

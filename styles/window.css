@@ -127,6 +127,7 @@
   border: 1px solid transparent; border-radius: 3px;
 }
 .grid-item:hover { background: var(--face); border-color: var(--face-d); }
+.grid-item.selected { background: rgba(36, 94, 219, .16); border-color: rgba(36, 94, 219, .5); }
 .grid-item .glyph { width: 42px; height: 42px; }
 .grid-item .cap { font-size: 12px; line-height: 1.25; word-break: break-word; }
 .grid-item .cap small { display: block; color: #888; font-size: 11px; }
