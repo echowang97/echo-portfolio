@@ -17,3 +17,6 @@ assets/icons/memphis.briefcase.png
 assets/icons/memphis.package.png
 assets/icons/memphis.files.png
 assets/icons/memphis.world.png
+assets/icons/*.ico
+assets/icons/_tmp_*.png
+assets/icons/memphis.trash_full.png

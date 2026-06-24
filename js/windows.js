@@ -178,9 +178,9 @@ function gridItemHTML(it) {
     return `<button class="grid-item" data-img="${it.src}">${glyph("image")}<span class="cap">${esc(it.label)}</span></button>`;
   if (it.type === "video") {
     const thumb = `https://img.youtube.com/vi/${it.yt}/mqdefault.jpg`;
-    return `<a class="grid-item video" href="https://www.youtube.com/watch?v=${it.yt}" target="_blank" rel="noopener" title="${esc(it.role || "")}">
+    return `<button class="grid-item video" data-yt="${it.yt}" data-label="${esc(it.label)}" title="${esc(it.role || "")}">
       <span class="thumb"><img loading="lazy" src="${thumb}" alt="${esc(it.label)}"></span>
-      <span class="cap">${esc(it.label)}</span></a>`;
+      <span class="cap">${esc(it.label)}</span></button>`;
   }
   return "";
 }
@@ -218,6 +218,8 @@ function wireBody(el, key) {
     b.addEventListener("dblclick", () => showLightbox(b.dataset.img)));
   el.querySelectorAll("a.grid-item").forEach((a) =>
     a.addEventListener("dblclick", () => window.open(a.href, "_blank", "noopener")));
+  el.querySelectorAll("[data-yt]").forEach((b) =>
+    b.addEventListener("dblclick", () => showVideo(b.dataset.yt, b.dataset.label)));
 
   // 正文里的文本按钮 / 超链接：保持单击
   el.querySelectorAll("[data-open]").forEach((b) =>
@@ -259,6 +261,15 @@ function showSocial(keyName, anchor) {
 function outside(e) { if (socialPop && !socialPop.contains(e.target)) closeSocial(); }
 function closeSocial() {
   if (socialPop) { socialPop.remove(); socialPop = null; document.removeEventListener("mousedown", outside); }
+}
+
+// ---------- 视频弹窗 ----------
+function showVideo(id, label) {
+  const m = document.getElementById("video-modal");
+  document.getElementById("vmodal-title").textContent = label || "";
+  document.getElementById("vmodal-iframe").src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+  document.getElementById("vmodal-link").href = `https://www.youtube.com/watch?v=${id}`;
+  m.hidden = false;
 }
 
 // ---------- lightbox ----------

@@ -12,7 +12,7 @@ const MAP = {
   doc:     "memphis.note",      // 带字的文档 → Resume
   mail:    "memphis.mail",      // 信封 → Contact
   notepad: "memphis.text",      // 记事本纸张 → Notepad
-  recycle: "memphis.trash",     // 带回收箭头的垃圾桶 → Recycle Bin
+  recycle: "recyclebin.full",   // 装满纸张的回收站（XP/98 经典款，alexmeub 98-icons）
   link:    "memphis.link",      // 地球快捷方式 → 外链
   image:   "memphis.image",     // 图片缩略图占位
 };

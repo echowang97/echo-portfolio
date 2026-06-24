@@ -9,11 +9,19 @@ body {
   user-select: none;
 }
 img { display: block; max-width: 100%; }
-button { font-family: inherit; cursor: pointer; border: none; background: none; }
+button { font-family: inherit; border: none; background: none; }
 ul { list-style: none; }
 a { color: inherit; }
 /* hidden 属性必须压过组件的 display 设定（lightbox 用了 display:grid） */
 [hidden] { display: none !important; }
+
+/* 复古像素鼠标：默认箭头，可点元素用指点手（带系统 fallback） */
+html, body { cursor: url("../assets/cursors/arrow.png") 0 0, auto; }
+a, button, .icon, .grid-item, .social-chip, .start-btn, .start-list li,
+.task-item, .ctrl, .btn-xp, [data-folder], [data-img], [data-yt],
+[data-open], [data-social], .note-block .links a, .lightbox-close, .copy-btn {
+  cursor: url("../assets/cursors/pointer.png") 10 0, pointer;
+}
 
 :root {
   /* XP-ish palette, 但避开 AI 渐变 */

@@ -104,3 +104,13 @@ export function initLightbox() {
   box.addEventListener("click", (e) => { if (e.target === box) close(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !box.hidden) close(); });
 }
+
+// 视频弹窗关闭（清空 iframe src 以停止播放）
+export function initVideoModal() {
+  const m = document.getElementById("video-modal");
+  const iframe = document.getElementById("vmodal-iframe");
+  const close = () => { m.hidden = true; iframe.src = ""; };
+  document.getElementById("vmodal-close").addEventListener("click", close);
+  m.addEventListener("click", (e) => { if (e.target === m) close(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !m.hidden) close(); });
+}

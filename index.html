@@ -48,6 +48,22 @@
     </div>
   </main>
 
+  <!-- 视频弹窗（内嵌 YouTube 播放） -->
+  <div id="video-modal" class="vmodal" hidden>
+    <div class="vmodal-box">
+      <header class="title-bar vmodal-bar">
+        <span class="label" id="vmodal-title"></span>
+        <button id="vmodal-close" class="ctrl" aria-label="close">&times;</button>
+      </header>
+      <div class="vmodal-frame">
+        <iframe id="vmodal-iframe" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="vmodal-foot">
+        <a id="vmodal-link" class="btn-xp" target="_blank" rel="noopener">在 YouTube 打开 ↗</a>
+      </div>
+    </div>
+  </div>
+
   <!-- 图片放大遮罩 -->
   <div id="lightbox" class="lightbox" hidden>
     <img id="lightbox-img" alt="" />

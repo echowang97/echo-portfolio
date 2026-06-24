@@ -47,5 +47,6 @@ Vercel：import 仓库，framework 选 Other，无构建命令，直接发布。
 
 ## 素材与授权
 
-- **图标**：[Memphis icon theme](https://github.com/infofintech/memphis)（MIT），9x/XP 风重画，文件在 `assets/icons/`。
+- **图标**：[Memphis icon theme](https://github.com/infofintech/memphis)（MIT），9x/XP 风重画，文件在 `assets/icons/`。回收站（满）取自 [Alex Meub 的 Windows 98 图标集](https://win98icons.alexmeub.com/)。
+- **鼠标**：`assets/cursors/` 下的像素箭头与指点手，本仓库自绘（`serve.py` 同目录的生成思路），默认箭头、可点元素用手型。
 - **壁纸**：`assets/bliss.jpeg` 为 Windows XP "Bliss"，微软版权，仅个人怀旧用途。如需可商用，替换为 CC 授权的仿 Bliss 图即可。

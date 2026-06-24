@@ -1,6 +1,6 @@
 // 入口：跑开机自检 → 进桌面
 import { runBoot } from "./boot.js";
-import { initDesktop, initLightbox } from "./desktop.js";
+import { initDesktop, initLightbox, initVideoModal } from "./desktop.js";
 import { openWindow } from "./windows.js";
 
 function enterDesktop() {
@@ -11,6 +11,7 @@ function enterDesktop() {
 
   initDesktop();
   initLightbox();
+  initVideoModal();
 
   // 进桌面后自动打开 About，给访客一个落点
   setTimeout(() => openWindow("about"), 450);

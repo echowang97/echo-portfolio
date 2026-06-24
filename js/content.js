@@ -130,7 +130,6 @@ export const FOLDERS = {
         body: "亮黄底拼贴艺术（西斯廷之手、墨镜人像、热气球、火星）+ Instrument Serif 斜体标题，GSAP 滚动驱动 + 三段 Lottie 动效。",
         links: [
           { label: "全屏打开 demo", href: "https://kuse-landing-collage.vercel.app" },
-          { label: "原仓库", href: "https://github.com/kuse-ai/kuse-landing-next-web" },
         ],
       },
       { type: "video", label: "Kuse 1.0 Launch Video", yt: "nuCxUIsWjsI",
@@ -153,8 +152,6 @@ export const FOLDERS = {
       },
       { type: "video", label: "Junior Launch Video", yt: "yj0Zb4vVDAo",
         role: "内容 + 分镜 + 动画效果 + 整体视频效果把控。我们自主拍摄。" },
-      { type: "image", label: "junior-logo-full", src: "https://kuse-studio-six.vercel.app/logos/junior-logo-full-light.svg" },
-      { type: "image", label: "junior-logo-icon", src: "https://kuse-studio-six.vercel.app/logos/junior-logo-icon-light.svg" },
     ],
   },
 };
