@@ -24,11 +24,6 @@ export function openWindow(key) {
   el.className = "window";
   el.dataset.key = key;
 
-  const baseX = 120 + (offset % 6) * 28;
-  const baseY = 60 + (offset % 6) * 24;
-  offset++;
-  el.style.left = baseX + "px";
-  el.style.top = baseY + "px";
   el.style.width = (width || 440) + "px";
 
   el.innerHTML = `
@@ -40,6 +35,7 @@ export function openWindow(key) {
     <div class="window-body">${bodyHTML}</div>`;
 
   host().appendChild(el);
+  positionWindow(el);
   open.set(key, { el, title, icon });
   bringToFront(el);
 
@@ -72,6 +68,20 @@ export const isOpen = (key) => open.has(key);
 // ---------- 内部 ----------
 function bringToFront(el) {
   el.style.zIndex = ++topZ;
+}
+
+// 轻微错层，但始终限制在视口内（底部不被任务栏截断；超大窗贴顶左）
+function positionWindow(el) {
+  const margin = 10, taskbar = 34;
+  const vw = window.innerWidth, vh = window.innerHeight;
+  const w = el.offsetWidth, h = el.offsetHeight;
+  let left = 64 + (offset % 5) * 26;
+  let top = 38 + (offset % 5) * 20;
+  offset++;
+  left = Math.min(Math.max(left, margin), Math.max(margin, vw - w - margin));
+  top = Math.min(Math.max(top, margin), Math.max(margin, vh - taskbar - h - margin));
+  el.style.left = left + "px";
+  el.style.top = top + "px";
 }
 
 function makeDraggable(handle, el) {
