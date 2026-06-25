@@ -200,9 +200,9 @@ function aboutHTML() {
         <div class="about-name">${ABOUT.name}<small>${ABOUT.nameZh}</small></div>
         <div class="about-roles">${esc(ABOUT.roles)}</div>
         <div class="about-loc">${esc(ABOUT.location)}</div>
+        <div class="social-bar">${social}</div>
       </div>
     </div>
-    <div class="social-bar">${social}</div>
     <div class="stats">${stats}</div>
     <div class="bio">${bio}</div>`;
 }

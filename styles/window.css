@@ -81,7 +81,7 @@
 .about-roles { font-family: var(--font-mono); font-size: 16px; color: var(--xp-blue); }
 .about-loc { color: #666; font-size: 13px; margin-top: 2px; }
 
-.social-bar { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 18px; }
+.social-bar { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
 .social-chip {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 5px 10px;
