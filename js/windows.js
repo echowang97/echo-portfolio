@@ -117,7 +117,7 @@ function build(key) {
     const [, proj, idxStr] = key.split(":");
     const f = FOLDERS[proj];
     const pile = f?.piles?.[+idxStr];
-    return { title: `${f?.label || ""} · ${pile?.label || ""}`, icon: "folder", width: 820, bodyHTML: galleryHTML(pile) };
+    return { title: `${f?.label || ""} · ${pile?.label || ""}`, icon: "folder", width: 1040, bodyHTML: galleryHTML(pile) };
   }
 
   if (key.startsWith("folder:")) {
