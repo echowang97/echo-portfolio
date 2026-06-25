@@ -64,7 +64,7 @@
 .about-meta { flex: 1; min-width: 0; }
 .about-photo {
   flex: none;
-  width: 104px; height: 128px;
+  width: 168px; height: 210px;
   object-fit: cover;
   background: var(--face);
   border: 1px solid #b8b4a8;
@@ -319,7 +319,17 @@
 }
 .textpane a { color: var(--xp-blue); text-decoration: underline; }
 
-/* ---- resume ---- */
+/* ---- resume / cv ---- */
+.cv-head { margin-bottom: 14px; }
+.cv-name { font-size: 22px; font-weight: 600; }
+.cv-name small { font-size: 15px; color: #666; font-weight: 400; margin-left: 8px; }
+.cv-title { font-family: var(--font-mono); color: var(--xp-blue); font-size: 15px; margin-top: 2px; }
+.cv-contact { font-size: 12px; color: #555; margin-top: 6px; }
+.cv-sec { margin-top: 18px; }
+.cv-sec h3 { font-size: 14px; font-weight: 600; border-bottom: 1px solid var(--face-d); padding-bottom: 4px; margin-bottom: 8px; }
+.cv-sec p { margin-bottom: 8px; }
+.cv-note { margin-top: 18px; font-size: 12px; color: #888; }
+
 .resume-actions { display: flex; gap: 10px; margin-bottom: 14px; }
 .btn-xp {
   padding: 6px 16px; font-size: 13px;

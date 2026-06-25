@@ -206,9 +206,33 @@ export const RECYCLE = {
   ],
 };
 
+// 简历：先用「设计总监版」叙述填好草稿，Echo 之后自己改。
 export const RESUME = {
-  note: "在线简历可看下面信息，或下载 PDF。",
-  pdf: null, // 放 PDF 后填路径，例如 "assets/echo-resume.pdf"
+  pdf: null, // 放 PDF 后填路径，例如 "assets/echo-resume.pdf"（填了会出「下载 PDF」按钮）
+  name: "Echo Wang",
+  nameZh: "王欣然",
+  title: "Design Director · Chief of Staff · Creative Developer",
+  contact: ["echowangxr@gmail.com", "+86 15652197916", "小红书 @Echo的画板", "github.com/echowang97"],
+  sections: [
+    {
+      h: "Profile",
+      paras: [
+        "我是设计负责人，也是亲自下场落地的那个人。在中国 AI 出海最前沿的团队里，我带着约 10 人的设计组，从 0 到 1 搭起 7 个项目的视觉体系（Web3 与 AI 双赛道），同时以 Chief of Staff 的身份直接向 CEO 汇报，参与公司从找 PMF 到 Launch 的全链路决策。",
+        "管理上，我用 60/30/10 分配任务、每日 1 对 1、每周设计周会把团队的审美和标准拉齐，连续拿到 S 与 A+ 绩效。设计上，我是唯一贯穿 Kuse 三代产品（白板到文件管理到 Workflow）的设计负责人，每次 pivot 都从 0 重建产品 UI、视觉体系与官网（前后做了 4 版），这套产品服务 170 个国家、50 万注册用户。2022 年主导的 Delysium 交互式白皮书上线 3 个月 124 万次浏览，拿下 Awwwards Honorable Mention。",
+        "我不让审美停在 Figma。我把设计规范写成 stylelint 的 CI 硬约束，一个人用 vibe coding 重做了 100+ 页、6 语言的 Kuse 与 Junior 官网，还把方法沉淀成可复用的 skill，教市场同事自己改官网，让设计师不再是瓶颈。个人也在小红书持续输出 vibe coding 内容，积累 6600+ 粉丝。",
+        "一句话：既能带团队、定方向，也能亲手把它写进上线代码。",
+      ],
+    },
+    {
+      h: "项目经历",
+      paras: ["〔按时间/项目补：公司、角色、起止时间、关键产出。可对照 Projects 文件夹里的作品。〕"],
+    },
+    {
+      h: "技能",
+      paras: ["设计：品牌 / UI / 设计系统 / 视觉叙事　|　开发：vibe coding 落地前端、stylelint CI 约束　|　管理：约 10 人设计团队、60/30/10、绩效"],
+    },
+  ],
+  note: "这版按 About 的「设计总监」叙述先填，之后自己改。",
 };
 
 // 开机自检画面文本（BIOS / POST 风）

@@ -106,11 +106,11 @@ function makeDraggable(handle, el) {
 
 // ---------- 内容构建 ----------
 function build(key) {
-  if (key === "about")   return { title: "About Me", icon: "monitor", width: 560, bodyHTML: aboutHTML() };
+  if (key === "about")   return { title: "About Me", icon: "monitor", width: 720, bodyHTML: aboutHTML() };
   if (key === "projects")return { title: "Projects", icon: "folder", width: 380, bodyHTML: gridHTML(PROJECTS.children) };
   if (key === "contact") return { title: "Contact", icon: "mail", width: 440, bodyHTML: `<pre class="textpane">${linkifyContact(CONTACT)}</pre>` };
   if (key === "notepad") return { title: "readme.txt - Notepad", icon: "notepad", width: 440, bodyHTML: `<pre class="textpane">${esc(NOTEPAD)}</pre>` };
-  if (key === "resume")  return { title: "Resume", icon: "doc", width: 460, bodyHTML: resumeHTML() };
+  if (key === "resume")  return { title: "Resume", icon: "doc", width: 600, bodyHTML: resumeHTML() };
   if (key === "recycle") return { title: "Recycle Bin", icon: "recycle", width: 560, bodyHTML: gridHTML(RECYCLE.children) };
 
   if (key.startsWith("gallery:")) {
@@ -208,15 +208,24 @@ function aboutHTML() {
 }
 
 function resumeHTML() {
-  const dl = RESUME.pdf
-    ? `<a class="btn-xp" href="${RESUME.pdf}" download>下载 PDF</a>`
+  const r = RESUME;
+  const dl = r.pdf
+    ? `<a class="btn-xp" href="${r.pdf}" download>下载 PDF</a>`
     : `<button class="btn-xp" disabled>下载 PDF（待补）</button>`;
+  const contact = (r.contact || []).map(esc).join("　·　");
+  const sections = (r.sections || []).map((s) =>
+    `<section class="cv-sec"><h3>${esc(s.h)}</h3>${(s.paras || []).map((p) => `<p>${esc(p)}</p>`).join("")}</section>`).join("");
   return `
-    <div class="resume-actions">
-      <button class="btn-xp" data-open="about">在线看简历（见 About）</button>
-      ${dl}
-    </div>
-    <p>${esc(RESUME.note)}</p>`;
+    <div class="cv">
+      <div class="cv-head">
+        <div class="cv-name">${esc(r.name)}<small>${esc(r.nameZh)}</small></div>
+        <div class="cv-title">${esc(r.title)}</div>
+        <div class="cv-contact">${contact}</div>
+      </div>
+      <div class="resume-actions">${dl}</div>
+      ${sections}
+      <p class="cv-note">${esc(r.note)}</p>
+    </div>`;
 }
 
 // 文件夹/回收站内容：folder/link/image/video 走网格，note 走整行块
