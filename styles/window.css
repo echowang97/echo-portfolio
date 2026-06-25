@@ -326,8 +326,13 @@
 .cv-title { font-family: var(--font-mono); color: var(--xp-blue); font-size: 15px; margin-top: 2px; }
 .cv-contact { font-size: 12px; color: #555; margin-top: 6px; }
 .cv-sec { margin-top: 18px; }
-.cv-sec h3 { font-size: 14px; font-weight: 600; border-bottom: 1px solid var(--face-d); padding-bottom: 4px; margin-bottom: 8px; }
+.cv-sec h3 { font-size: 14px; font-weight: 600; color: var(--xp-blue); border-bottom: 1px solid var(--face-d); padding-bottom: 4px; margin-bottom: 8px; }
 .cv-sec p { margin-bottom: 8px; }
+.cv-sub { font-weight: 600; font-size: 13.5px; margin-top: 12px; }
+.cv-meta { font-family: var(--font-mono); font-size: 12px; color: #777; margin-top: 1px; margin-bottom: 4px; }
+.cv-label { font-weight: 600; font-size: 12.5px; color: #444; margin-top: 8px; margin-bottom: 3px; }
+.cv-ul { margin: 0 0 8px 18px; }
+.cv-ul li { margin-bottom: 4px; }
 .cv-note { margin-top: 18px; font-size: 12px; color: #888; }
 
 .resume-actions { display: flex; gap: 10px; margin-bottom: 14px; }

@@ -110,7 +110,7 @@ function build(key) {
   if (key === "projects")return { title: "Projects", icon: "folder", width: 380, bodyHTML: gridHTML(PROJECTS.children) };
   if (key === "contact") return { title: "Contact", icon: "mail", width: 440, bodyHTML: `<pre class="textpane">${linkifyContact(CONTACT)}</pre>` };
   if (key === "notepad") return { title: "readme.txt - Notepad", icon: "notepad", width: 440, bodyHTML: `<pre class="textpane">${esc(NOTEPAD)}</pre>` };
-  if (key === "resume")  return { title: "Resume", icon: "doc", width: 600, bodyHTML: resumeHTML() };
+  if (key === "resume")  return { title: "Resume", icon: "doc", width: 640, bodyHTML: resumeHTML() };
   if (key === "recycle") return { title: "Recycle Bin", icon: "recycle", width: 560, bodyHTML: gridHTML(RECYCLE.children) };
 
   if (key.startsWith("gallery:")) {
@@ -214,7 +214,8 @@ function resumeHTML() {
     : `<button class="btn-xp" disabled>下载 PDF（待补）</button>`;
   const contact = (r.contact || []).map(esc).join("　·　");
   const sections = (r.sections || []).map((s) =>
-    `<section class="cv-sec"><h3>${esc(s.h)}</h3>${(s.paras || []).map((p) => `<p>${esc(p)}</p>`).join("")}</section>`).join("");
+    `<section class="cv-sec"><h3>${esc(s.h)}</h3>${(s.blocks || []).map(cvBlock).join("")}</section>`).join("");
+  const note = r.note ? `<p class="cv-note">${esc(r.note)}</p>` : "";
   return `
     <div class="cv">
       <div class="cv-head">
@@ -224,8 +225,18 @@ function resumeHTML() {
       </div>
       <div class="resume-actions">${dl}</div>
       ${sections}
-      <p class="cv-note">${esc(r.note)}</p>
+      ${note}
     </div>`;
+}
+
+function cvBlock(b) {
+  let out = "";
+  if (b.sub) out += `<div class="cv-sub">${esc(b.sub)}</div>`;
+  if (b.meta) out += `<div class="cv-meta">${esc(b.meta)}</div>`;
+  if (b.label) out += `<div class="cv-label">${esc(b.label)}</div>`;
+  if (b.p) out += `<p>${esc(b.p)}</p>`;
+  if (b.ul) out += `<ul class="cv-ul">${b.ul.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`;
+  return out;
 }
 
 // 文件夹/回收站内容：folder/link/image/video 走网格，note 走整行块
