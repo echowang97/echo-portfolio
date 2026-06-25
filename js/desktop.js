@@ -1,7 +1,7 @@
 // 桌面：图标、任务栏（开窗项 + 时钟）、Start 菜单
 import { DESKTOP_ICONS } from "./content.js";
 import { glyph } from "./icons.js";
-import { openWindow, focusWindow, closeWindow, isOpen } from "./windows.js";
+import { openWindow, focusWindow, closeWindow, isOpen, setEditable, exportEdits } from "./windows.js";
 
 export function initDesktop() {
   renderIcons();
@@ -103,6 +103,26 @@ export function initLightbox() {
   document.getElementById("lightbox-close").addEventListener("click", close);
   box.addEventListener("click", (e) => { if (e.target === box) close(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !box.hidden) close(); });
+}
+
+// 站内编辑开关：开启后图说/描述可直接改，「导出」下载 JSON
+export function initEditMode() {
+  const btn = document.getElementById("edit-toggle");
+  const ex = document.getElementById("edit-export");
+  const wrap = document.getElementById("edit-controls");
+  if (!btn || !wrap) return;
+  wrap.hidden = false;
+  let on = false;
+  const apply = () => {
+    document.body.classList.toggle("edit-mode", on);
+    btn.classList.toggle("on", on);
+    btn.setAttribute("aria-pressed", String(on));
+    ex.hidden = !on;
+    setEditable(on);
+  };
+  btn.addEventListener("click", () => { on = !on; apply(); });
+  ex.addEventListener("click", exportEdits);
+  apply();
 }
 
 // CRT 屏幕效果开关（桌面右上角，状态存 localStorage，默认开）

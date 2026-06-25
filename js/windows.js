@@ -15,6 +15,34 @@ let offset = 0;              // 新窗口错位
 const notify = (type, detail) =>
   document.dispatchEvent(new CustomEvent(type, { detail }));
 
+// ---------- 站内编辑：图说 / 描述存浏览器，可导出 JSON ----------
+const EDIT_KEY = "echo-edits";
+function loadEdits() {
+  try { return JSON.parse(localStorage.getItem(EDIT_KEY)) || { cap: {}, desc: {} }; }
+  catch { return { cap: {}, desc: {} }; }
+}
+const EDITS = loadEdits();
+function saveEdits() { try { localStorage.setItem(EDIT_KEY, JSON.stringify(EDITS)); } catch {} }
+const capKey = (it) => it?.img || (it?.yt ? "yt:" + it.yt : "");
+const capOf = (it) => { const k = capKey(it); return (k && EDITS.cap[k] != null ? EDITS.cap[k] : it?.caption) || ""; };
+const descOf = (pileKey, pile) => (EDITS.desc[pileKey] != null ? EDITS.desc[pileKey] : pile?.desc) || "";
+
+// 给所有打开的 gallery 的可编辑字段开/关编辑（desktop.js 的编辑开关调用）
+export function setEditable(on) {
+  document.querySelectorAll("#windows [data-edit]").forEach((n) => {
+    n.contentEditable = on ? "true" : "false";
+  });
+}
+// 导出已编辑的图说/描述为 JSON（发我合并进源码）
+export function exportEdits() {
+  const blob = new Blob([JSON.stringify(EDITS, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "echo-edits.json";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
 // ---------- 公开 API ----------
 export function openWindow(key) {
   if (open.has(key)) { focusWindow(key); return; }
@@ -127,7 +155,7 @@ function build(key) {
     const [, proj, idxStr] = key.split(":");
     const f = FOLDERS[proj];
     const pile = f?.piles?.[+idxStr];
-    return { title: `${f?.label || ""} · ${pile?.label || ""}`, icon: "folder", width: 1040, bodyHTML: galleryHTML(pile) };
+    return { title: `${f?.label || ""} · ${pile?.label || ""}`, icon: "folder", width: 1040, bodyHTML: galleryHTML(pile, `${proj}:${idxStr}`) };
   }
 
   if (key.startsWith("folder:")) {
@@ -176,7 +204,7 @@ function galleryActions(it) {
   if (it.yt) return `<a class="chip-link" href="https://www.youtube.com/watch?v=${it.yt}" target="_blank" rel="noopener">在 YouTube 打开 ↗</a>`;
   return "";
 }
-function galleryHTML(pile) {
+function galleryHTML(pile, pileKey) {
   if (!pile) return "<p>（空）</p>";
   const items = pile.items || [];
   const first = items[0];
@@ -186,8 +214,8 @@ function galleryHTML(pile) {
     <div class="gallery-main" id="gmain">${galleryMainHTML(first, pile.kind)}</div>
     <div class="gallery-desc">
       <div class="g-title">${esc(pile.label)}</div>
-      <p class="g-desc">${esc(pile.desc || "〔补一段描述〕")}</p>
-      <div class="g-caption" id="gcap">${first ? esc(first.caption || "") : ""}</div>
+      <p class="g-desc" data-edit="desc" data-key="${esc(pileKey)}">${esc(descOf(pileKey, pile))}</p>
+      <div class="g-caption" id="gcap" data-edit="cap" data-key="${esc(capKey(first))}">${esc(capOf(first))}</div>
       <div class="g-actions" id="gact">${galleryActions(first)}</div>
     </div>
   </div>
@@ -330,7 +358,7 @@ function wireBody(el, key) {
   el.querySelectorAll("[data-gallery]").forEach((b) =>
     b.addEventListener("dblclick", () => openWindow("gallery:" + b.dataset.gallery)));
 
-  // gallery 缩略图切换
+  // gallery 缩略图切换 + 站内编辑
   if (key.startsWith("gallery:")) {
     const [, proj, idxStr] = key.split(":");
     const pile = FOLDERS[proj]?.piles?.[+idxStr];
@@ -339,10 +367,24 @@ function wireBody(el, key) {
       t.addEventListener("click", () => {
         const it = items[+t.dataset.gidx];
         el.querySelector("#gmain").innerHTML = galleryMainHTML(it, pile.kind);
-        el.querySelector("#gcap").textContent = it.caption || "";
+        const cap = el.querySelector("#gcap");
+        cap.textContent = capOf(it);       // 应用已编辑的图说
+        cap.dataset.key = capKey(it);       // 切换当前图说的存储键
         el.querySelector("#gact").innerHTML = galleryActions(it);
         el.querySelectorAll(".g-thumb").forEach((x) => x.classList.toggle("active", x === t));
       }));
+    // 编辑：输入即存
+    el.querySelectorAll("[data-edit]").forEach((node) =>
+      node.addEventListener("input", () => {
+        const k = node.dataset.key;
+        if (!k) return;
+        EDITS[node.dataset.edit][k] = node.textContent.trim();
+        saveEdits();
+      }));
+    // 若当前处于编辑模式，新开的 gallery 也设为可编辑
+    if (document.body.classList.contains("edit-mode")) {
+      el.querySelectorAll("[data-edit]").forEach((n) => { n.contentEditable = "true"; });
+    }
   }
 
   // 图标类与作品卡片：单击选中、双击打开，与桌面图标一致

@@ -94,3 +94,41 @@ body.crt-off #crt-screen { display: none; }
   background: #6cf08a;
   box-shadow: 0 0 7px rgba(108, 240, 138, 0.9);
 }
+
+/* 编辑控件（CRT 开关左侧） */
+.edit-controls {
+  position: fixed;
+  top: 10px; right: 92px;
+  z-index: 100001;
+  display: flex; gap: 8px;
+}
+.pill-btn {
+  padding: 5px 11px;
+  font-family: var(--font-mono); font-size: 13px; letter-spacing: .5px;
+  color: #dfe7df;
+  background: rgba(18, 26, 20, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.pill-btn:hover { background: rgba(18, 26, 20, 0.78); }
+.pill-btn.on { background: rgba(36, 94, 219, 0.8); border-color: rgba(255,255,255,.4); }
+
+/* 编辑模式下可编辑字段的提示 */
+body.edit-mode [data-edit] {
+  outline: 1px dashed var(--xp-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+  cursor: text;
+}
+body.edit-mode [data-edit]:focus {
+  outline: 2px solid var(--xp-blue);
+  background: #fffdf0;
+}
+body.edit-mode .g-caption:empty::before,
+body.edit-mode .g-desc:empty::before {
+  content: "（点此输入）";
+  color: #bbb;
+}
