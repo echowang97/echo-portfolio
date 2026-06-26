@@ -21,12 +21,11 @@ export const SOCIAL = [
   { key: "xiaohongshu", label: "小红书", value: "@Echo的画板",        href: null, copy: "@Echo的画板", qr: null },
   { key: "wechat",      label: "微信",   value: "wangxinran_echo",    href: null, copy: "wangxinran_echo", qr: null },
   { key: "email",       label: "Email",  value: "echowangxr@gmail.com",  href: "mailto:echowangxr@gmail.com" },
-  { key: "phone",       label: "Phone",  value: "+86 15652197916",       href: "tel:+8615652197916" },
 ];
 
 export const ABOUT = {
-  name: "Echo Wang",
-  nameZh: "王欣然",
+  name: "Echo W",
+  nameZh: "",
   roles: "Design Director · Chief of Staff · Creative Developer",
   location: "📍 全球可飞",
   photo: null, // 放照片：填路径，例如 "assets/echo.jpg"（竖图最佳）

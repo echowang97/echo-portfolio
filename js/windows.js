@@ -235,7 +235,7 @@ function aboutHTML() {
     <div class="about-head">
       ${photo}
       <div class="about-meta">
-        <div class="about-name">${ABOUT.name}<small>${ABOUT.nameZh}</small></div>
+        <div class="about-name">${esc(ABOUT.name)}${ABOUT.nameZh ? `<small>${esc(ABOUT.nameZh)}</small>` : ""}</div>
         <div class="about-roles">${esc(ABOUT.roles)}</div>
         <div class="about-loc">${esc(ABOUT.location)}</div>
         <div class="social-bar">${social}</div>
