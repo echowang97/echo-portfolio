@@ -44,10 +44,9 @@ export const ABOUT = {
 };
 
 export const CONTACT = `想合作 / 想聊聊 / 只是打个招呼都欢迎。
-邮件或电话都行，看你方便。
+邮件或社交都行，看你方便。
 
 Email   echowangxr@gmail.com
-Phone   +86 15652197916
 小红书   @Echo的画板
 微信     wangxinran_echo`;
 
@@ -55,7 +54,7 @@ export const NOTEPAD = `readme.txt
 -----------
 你好，你正在浏览的不是网站，是一台 ECHO-OS。
 左边的图标都能双击。Projects 里有我做过的东西。
-想找我：echowangxr@gmail.com / +86 15652197916
+想找我：echowangxr@gmail.com
 by echo`;
 
 // 项目文件夹 Delysium / Kuse / Junior。每个 item:
@@ -213,15 +212,22 @@ export const FOLDERS = {
   sip: {
     label: "sip",
     items: [
-      { type: "work", title: "sip · Web3 · 0→1 视觉体系", status: "未 launch", shot: null,
-        desc: "〔一句话说明 + 作品图，之后补。〕" },
+      { type: "work", title: "sip · Web3 · 0→1 视觉体系", status: "未 launch", shot: "assets/covers/sip.png",
+        desc: "sip（@sip_trading_）· The ultimate on-chain trading ecosystem。Echo 做的 0→1 品牌视觉。〔可补细节〕" },
     ],
   },
   nofa: {
     label: "NOFA",
     items: [
-      { type: "work", title: "NOFA · Web3 · 0→1 视觉体系", status: "未 launch", shot: null,
-        desc: "〔一句话说明 + 作品图，之后补。〕" },
+      { type: "work", title: "NOFA · Web3 · 0→1 视觉体系", status: "未 launch", shot: "assets/covers/nofa.png",
+        desc: "NOFA（@nofA_ai · nofa.ai）· Infrastructure for Agentic Trading。Echo 做的 0→1 品牌视觉。〔可补细节〕" },
+    ],
+  },
+  t54: {
+    label: "t54",
+    items: [
+      { type: "work", title: "t54 · t54.ai · Trust Layer for Agentic Economy", status: "Web3 / AI · 0→1 视觉", shot: "assets/covers/t54.png",
+        desc: "t54（t54.ai）· Trust Layer for Agentic Economy，Backed by Anagram / PL Capital / Franklin Templeton / Ripple。Echo 做的 0→1 品牌视觉。〔可补细节〕" },
     ],
   },
   baidu: {
@@ -241,6 +247,7 @@ export const RECYCLE = {
     { id: "delysium-one", type: "folder", label: "Delysium ONE", icon: "folder" },
     { id: "sip",          type: "folder", label: "sip",          icon: "folder" },
     { id: "nofa",         type: "folder", label: "NOFA",         icon: "folder" },
+    { id: "t54",          type: "folder", label: "t54",          icon: "folder" },
     { id: "baidu",        type: "folder", label: "百度游戏",      icon: "folder" },
   ],
 };
@@ -252,7 +259,7 @@ export const RESUME = {
   name: "王欣然",
   nameZh: "echo",
   title: "AI 产品设计总监 / 设计负责人（Design Lead）",
-  contact: ["echowangxr@gmail.com", "15652197916", "小红书 6,500+（vibe coding）", "github.com/echowang97"],
+  contact: ["echowangxr@gmail.com", "小红书 6,500+（vibe coding）", "github.com/echowang97"],
   sections: [
     {
       h: "简介",
