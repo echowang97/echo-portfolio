@@ -208,13 +208,14 @@
 .gallery { display: flex; gap: 18px; align-items: flex-start; }
 .gallery-main {
   flex: 1.7; min-width: 0;
+  height: min(70vh, 720px);   /* 固定高度，切换作品时弹窗不跳 */
   display: flex; align-items: center; justify-content: center;
 }
 /* 按图片原比例显示：以最长边为准，铺到上限即可；不裁切、不拉伸、容器自适应 */
 .gallery-main .g-img {
   display: block;
   max-width: 100%;
-  max-height: min(70vh, 720px);
+  max-height: 100%;
   width: auto; height: auto;
   background: #fff;
   border: 1px solid var(--face-d);
@@ -223,7 +224,7 @@
 .gallery-main .g-frame {
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: min(70vh, 720px);
+  max-height: 100%;
   border: 0; display: block;
   border-radius: 4px;
 }
@@ -231,7 +232,7 @@
 .gallery-main .g-video {
   display: block;
   max-width: 100%;
-  max-height: min(70vh, 720px);
+  max-height: 100%;
   width: auto; height: auto;
   background: #000;
   border: 1px solid var(--face-d);
