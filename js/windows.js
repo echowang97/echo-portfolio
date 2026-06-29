@@ -167,9 +167,9 @@ function build(key) {
   return { title: key, icon: "doc", width: 440, bodyHTML: "" };
 }
 
-// 缩略图地址：图片直接用 img，视频用 YouTube 封面
+// 缩略图地址：图片 / MP4 用 poster / YouTube 用封面
 function thumbSrc(it) {
-  return it?.img || (it?.yt ? `https://img.youtube.com/vi/${it.yt}/mqdefault.jpg` : null);
+  return it?.img || it?.poster || (it?.yt ? `https://img.youtube.com/vi/${it.yt}/mqdefault.jpg` : null);
 }
 
 // 文件夹里的「图堆」：每坨叠放几张图，双击进 gallery
@@ -195,6 +195,10 @@ function galleryMainHTML(it, kind) {
   if (!it) return `<div class="g-empty">还没有内容<br>稍后补图</div>`;
   if (it.yt) {
     return `<iframe class="g-frame" src="https://www.youtube.com/embed/${it.yt}?rel=0" title="${esc(it.caption || "")}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+  }
+  if (it.mp4) {
+    // 自动播放循环静音片段：只有当前大图位这一个在播，缩略图用 poster
+    return `<video class="g-video" src="${it.mp4}"${it.poster ? ` poster="${it.poster}"` : ""} autoplay muted loop playsinline preload="metadata"></video>`;
   }
   return `<img class="g-img" src="${it.img}" alt="${esc(it.caption || "")}">`;
 }
@@ -365,10 +369,13 @@ function wireBody(el, key) {
     const [, proj, idxStr] = key.split(":");
     const pile = FOLDERS[proj]?.piles?.[+idxStr];
     const items = pile?.items || [];
+    const playMain = () => el.querySelector("#gmain video")?.play().catch(() => {});
+    playMain(); // 首张若是片段，确保自动播
     el.querySelectorAll(".g-thumb").forEach((t) =>
       t.addEventListener("click", () => {
         const it = items[+t.dataset.gidx];
         el.querySelector("#gmain").innerHTML = galleryMainHTML(it, pile.kind);
+        playMain();
         const cap = el.querySelector("#gcap");
         cap.textContent = capOf(it);       // 应用已编辑的图说
         cap.dataset.key = capKey(it);       // 切换当前图说的存储键

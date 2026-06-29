@@ -85,6 +85,11 @@ export const PROJECTS = {
 
 export const FOLDERS = {
   // 项目文件夹用「图堆 piles」：每坨是一个分类，双击进 gallery view。
+  // pile.items 每项可以是：
+  //   { img: "...", caption } 静态图
+  //   { mp4: "...", poster: "...", caption } 自动播放循环片段（poster 用于缩略图/图堆，强烈建议给）
+  //   { yt: "视频ID", caption } YouTube 嵌入
+  // 片段建议：720p、几秒、静音、压到 <2MB；放 assets/clips/ 或填外部 CDN 完整 URL 均可。
   // 缺图缺文先留占位（items 为空 / desc 带〔〕），后面逐个补。
   delysium: {
     label: "Delysium",
