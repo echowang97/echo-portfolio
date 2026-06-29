@@ -214,7 +214,7 @@
 .gallery-main .g-img {
   display: block;
   max-width: 100%;
-  max-height: min(64vh, 640px);
+  max-height: min(70vh, 720px);
   width: auto; height: auto;
   background: #fff;
   border: 1px solid var(--face-d);
@@ -223,7 +223,7 @@
 .gallery-main .g-frame {
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: min(64vh, 640px);
+  max-height: min(70vh, 720px);
   border: 0; display: block;
   border-radius: 4px;
 }
@@ -231,7 +231,7 @@
 .gallery-main .g-video {
   display: block;
   max-width: 100%;
-  max-height: min(64vh, 640px);
+  max-height: min(70vh, 720px);
   width: auto; height: auto;
   background: #000;
   border: 1px solid var(--face-d);
@@ -241,7 +241,8 @@
   height: min(40vh, 360px); display: grid; place-items: center;
   color: #9a958a; font-size: 13px; text-align: center; line-height: 1.6;
 }
-.gallery-desc { flex: 1; min-width: 0; }
+/* 先隐藏说明文字栏，图片占满整宽展示。想恢复文字：删掉这条 display:none */
+.gallery-desc { display: none; }
 .gallery-desc .g-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
 .gallery-desc .g-desc { font-size: 13px; line-height: 1.7; }
 .gallery-desc .g-caption { font-size: 12px; color: #777; margin-top: 10px; }
