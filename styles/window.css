@@ -149,7 +149,12 @@
 .grid-item .cap { font-size: 12px; line-height: 1.25; word-break: break-word; }
 .grid-item .cap small { display: block; color: #888; font-size: 11px; }
 
-/* video 缩略图 */
+/* 图片 / video 缩略图 */
+.grid-item.img .thumb {
+  width: 84px; height: 60px;
+  border-radius: 3px; overflow: hidden; background: #fff; border: 1px solid var(--face-d);
+}
+.grid-item.img .thumb img { width: 100%; height: 100%; object-fit: cover; }
 .grid-item.video .thumb {
   position: relative; width: 84px; height: 48px;
   border-radius: 3px; overflow: hidden; background: #000;

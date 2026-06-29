@@ -233,8 +233,12 @@ export const FOLDERS = {
   baidu: {
     label: "百度游戏",
     items: [
-      { type: "work", title: "百度游戏 · 2021 · 视觉设计（手游）", status: "更早的经历", shot: null,
-        desc: "校招进组，参与 S 级日漫 IP 手游发行，做 Banner / 预约页 / icon / LOGO 等；参与百度游戏 LOGO 设计。作品图之后补。" },
+      { type: "note", title: "百度游戏 · 2021 · 视觉设计（手游）", status: "更早的经历",
+        body: "校招进组，参与 S 级日漫 IP 手游发行，做 Banner / 预约页 / icon / LOGO 等；参与百度游戏 LOGO 设计。" },
+      { type: "image", label: "百度 1", src: "assets/covers/baidu/baidu1.jpg" },
+      { type: "image", label: "百度 2", src: "assets/covers/baidu/baidu2.jpg" },
+      { type: "image", label: "百度 3", src: "assets/covers/baidu/baidu3.jpg" },
+      { type: "image", label: "百度 4", src: "assets/covers/baidu/baidu4.jpg" },
     ],
   },
 };

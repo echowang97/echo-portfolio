@@ -303,7 +303,9 @@ function gridItemHTML(it) {
   if (it.type === "link")
     return `<a class="grid-item" href="${it.href}" target="_blank" rel="noopener">${glyph("link")}<span class="cap">${esc(it.label)}${it.sub ? `<small>${esc(it.sub)}</small>` : ""}</span></a>`;
   if (it.type === "image")
-    return `<button class="grid-item" data-img="${it.src}">${glyph("image")}<span class="cap">${esc(it.label)}</span></button>`;
+    return `<button class="grid-item img" data-img="${it.src}" title="${esc(it.label || "")}">
+      <span class="thumb"><img loading="lazy" src="${it.src}" alt="${esc(it.label || "")}"></span>
+      <span class="cap">${esc(it.label || "")}</span></button>`;
   if (it.type === "video") {
     const thumb = `https://img.youtube.com/vi/${it.yt}/mqdefault.jpg`;
     return `<button class="grid-item video" data-yt="${it.yt}" data-label="${esc(it.label)}" title="${esc(it.role || "")}">
