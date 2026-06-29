@@ -1,0 +1,112 @@
+/* ============ 彩蛋样式 ============ */
+
+/* toast */
+.eg-toast {
+  position: fixed;
+  left: 50%; bottom: 52px;
+  transform: translateX(-50%);
+  z-index: 100060;
+  padding: 8px 16px;
+  font-family: var(--font-mono); font-size: 14px;
+  color: #d7ffce;
+  background: rgba(10, 20, 12, 0.82);
+  border: 1px solid rgba(124, 252, 106, 0.5);
+  border-radius: 6px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* Konami 字符雨 */
+#matrix { position: fixed; inset: 0; z-index: 100050; background: #000; cursor: pointer; }
+
+/* 屏保 */
+#saver {
+  position: fixed; inset: 0; z-index: 100055;
+  background: #05070a; overflow: hidden; cursor: none;
+}
+.saver-logo {
+  position: absolute; top: 0; left: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(40px, 7vw, 96px);
+  font-weight: 700; letter-spacing: 2px;
+  text-shadow: 0 0 18px currentColor;
+  will-change: transform;
+}
+.saver-logo small { font-size: 0.5em; opacity: 0.8; }
+
+/* 开始菜单分隔线 + 关机项 */
+.start-list .sep { height: 1px; margin: 4px 8px; padding: 0; background: var(--face-d); }
+.start-list li[data-shutdown] { font-weight: 500; }
+
+/* 右键菜单 */
+#ctxmenu {
+  position: fixed; z-index: 100040;
+  min-width: 168px; padding: 3px;
+  background: var(--win-bg);
+  border: 1px solid var(--win-border);
+  border-radius: 4px;
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.35);
+  font-size: 13px;
+}
+#ctxmenu li {
+  padding: 7px 14px; border-radius: 2px; color: var(--text);
+  cursor: url("../assets/cursors/pointer.png") 10 0, pointer;
+}
+#ctxmenu li:hover { background: var(--xp-blue); color: #fff; }
+#ctxmenu li.sep { padding: 0; margin: 3px 6px; height: 1px; background: var(--face-d); pointer-events: none; }
+
+/* 关于 ECHO-OS 对话框 */
+.eg-modal {
+  position: fixed; inset: 0; z-index: 100070;
+  display: grid; place-items: center;
+  background: rgba(0, 0, 0, 0.4);
+}
+.eg-dialog {
+  width: min(440px, 92vw);
+  background: var(--win-bg);
+  border: 1px solid var(--win-border);
+  border-radius: 8px 8px 0 0;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+.eg-body { background: #fff; padding: 16px 18px 18px; }
+.eg-spec {
+  font-family: var(--font-mono); font-size: 13px; line-height: 1.7;
+  color: #1a1a1a; white-space: pre-wrap; margin: 0 0 14px;
+}
+.eg-body .eg-ok { display: block; margin-left: auto; }
+
+/* 关机：CRT 收缩动画 */
+.crt-off-anim {
+  transform-origin: center center;
+  animation: crtOff 0.7s cubic-bezier(0.6, 0, 0.8, 0.2) forwards;
+}
+@keyframes crtOff {
+  0%   { transform: scale(1); filter: brightness(1); }
+  55%  { transform: scaleY(0.012) scaleX(1); filter: brightness(2.6); }
+  78%  { transform: scaleY(0.012) scaleX(0.05); filter: brightness(3.4); }
+  100% { transform: scale(0); filter: brightness(8); opacity: 0; }
+}
+body.powering-off #crt-screen,
+body.powering-off .crt-toggle,
+body.powering-off .edit-controls { display: none; }
+
+#shutdown {
+  position: fixed; inset: 0; z-index: 100080;
+  background: #000; color: #8a8a8a;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+  font-family: var(--font-mono); font-size: 14px;
+  cursor: pointer;
+}
+#shutdown .off-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #d8d8d8; box-shadow: 0 0 12px 2px rgba(255, 255, 255, 0.6);
+  animation: offDot 0.5s ease-out;
+}
+@keyframes offDot { 0% { transform: scale(14, 0.1); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+#shutdown .off-text { opacity: 0; animation: fadeIn 0.6s ease 0.5s forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .crt-off-anim { animation: none; opacity: 0; }
+  #shutdown .off-dot, #shutdown .off-text { animation: none; opacity: 1; }
+}

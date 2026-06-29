@@ -2,6 +2,7 @@
 import { DESKTOP_ICONS } from "./content.js";
 import { glyph } from "./icons.js";
 import { openWindow, focusWindow, closeWindow, isOpen, setEditable, exportEdits } from "./windows.js";
+import { crtShutdown } from "./eggs.js";
 
 export function initDesktop() {
   renderIcons();
@@ -49,7 +50,8 @@ function initStartMenu() {
   const list = document.getElementById("start-list");
 
   list.innerHTML = DESKTOP_ICONS.map((ic) =>
-    `<li data-id="${ic.id}">${glyph(ic.icon)} ${ic.label}</li>`).join("");
+    `<li data-id="${ic.id}">${glyph(ic.icon)} ${ic.label}</li>`).join("")
+    + `<li class="sep"></li><li data-shutdown>关机</li>`;
 
   const setOpen = (v) => {
     menu.hidden = !v;
@@ -58,7 +60,11 @@ function initStartMenu() {
 
   btn.addEventListener("click", (e) => { e.stopPropagation(); setOpen(menu.hidden); });
   list.querySelectorAll("li").forEach((li) =>
-    li.addEventListener("click", () => { openWindow(li.dataset.id); setOpen(false); }));
+    li.addEventListener("click", () => {
+      setOpen(false);
+      if (li.hasAttribute("data-shutdown")) crtShutdown();
+      else if (li.dataset.id) openWindow(li.dataset.id);
+    }));
   document.addEventListener("click", (e) => {
     if (!menu.hidden && !menu.contains(e.target) && e.target !== btn) setOpen(false);
   });
