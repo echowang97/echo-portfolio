@@ -147,7 +147,7 @@ function build(key) {
   if (key === "about")   return { title: "About Me", icon: "monitor", width: 720, bodyHTML: aboutHTML() };
   if (key === "projects")return { title: "Projects", icon: "folder", width: 380, bodyHTML: gridHTML(PROJECTS.children) };
   if (key === "contact") return { title: "Contact", icon: "mail", width: 440, bodyHTML: `<pre class="textpane">${linkifyContact(CONTACT)}</pre>` };
-  if (key === "notepad") return { title: "readme.txt - Notepad", icon: "notepad", width: 440, bodyHTML: `<pre class="textpane">${esc(NOTEPAD)}</pre>` };
+  if (key === "notepad") return { title: "about.txt - Notepad", icon: "notepad", width: 440, bodyHTML: `<pre class="textpane">${esc(NOTEPAD)}</pre>` };
   if (key === "resume")  return { title: "Resume", icon: "doc", width: 640, bodyHTML: resumeHTML() };
   if (key === "recycle") return { title: "Recycle Bin", icon: "recycle", width: 560, bodyHTML: gridHTML(RECYCLE.children) };
 

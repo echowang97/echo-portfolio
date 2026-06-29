@@ -50,11 +50,22 @@ Email   echowangxr@gmail.com
 小红书   @Echo的画板
 微信     wangxinran_echo`;
 
-export const NOTEPAD = `readme.txt
------------
+export const NOTEPAD = `关于 ECHO-OS
+------------------------------------------
 你好，你正在浏览的不是网站，是一台 ECHO-OS。
-左边的图标都能双击。Projects 里有我做过的东西。
+
+ECHO-OS  v2.6   (c) 2026 Echo W.
+
+处理器   Creative-Core(TM) 设计 + 代码 @ 97 MHz
+内存     想法 ............ 640K（够用了）
+显示     像素完美渲染 .... OK
+已安装   vibe coding · 审美 · 咖啡因
+授权给   Echo
+
+左边的图标都能双击，Projects 里有我做过的东西。
 想找我：echowangxr@gmail.com
+
+彩蛋   试试  ↑ ↑ ↓ ↓ ← → ← →  B A
 by echo`;
 
 // 项目文件夹 Delysium / Kuse / Junior。每个 item:
