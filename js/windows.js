@@ -197,8 +197,13 @@ function galleryMainHTML(it, kind) {
     return `<iframe class="g-frame" src="https://www.youtube.com/embed/${it.yt}?rel=0" title="${esc(it.caption || "")}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
   }
   if (it.mp4) {
-    // 自动播放循环静音片段：只有当前大图位这一个在播，缩略图用 poster
-    return `<video class="g-video" src="${it.mp4}"${it.poster ? ` poster="${it.poster}"` : ""} autoplay muted loop playsinline preload="metadata"></video>`;
+    const poster = it.poster ? ` poster="${it.poster}"` : "";
+    if (kind === "video") {
+      // 完整视频（有旁白）：带控件、有声、点击播放，不自动播
+      return `<video class="g-video" src="${it.mp4}"${poster} controls playsinline preload="metadata"></video>`;
+    }
+    // 短片段：自动播放、静音、循环
+    return `<video class="g-video" src="${it.mp4}"${poster} autoplay muted loop playsinline preload="metadata"></video>`;
   }
   return `<img class="g-img" src="${it.img}" alt="${esc(it.caption || "")}">`;
 }
@@ -384,7 +389,7 @@ function wireBody(el, key) {
     const [, proj, idxStr] = key.split(":");
     const pile = FOLDERS[proj]?.piles?.[+idxStr];
     const items = pile?.items || [];
-    const playMain = () => el.querySelector("#gmain video")?.play().catch(() => {});
+    const playMain = () => { const v = el.querySelector("#gmain video"); if (v && v.muted) v.play().catch(() => {}); };
     playMain(); // 首张若是片段，确保自动播
     el.querySelectorAll(".g-thumb").forEach((t) =>
       t.addEventListener("click", () => {

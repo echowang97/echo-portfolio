@@ -181,9 +181,9 @@ export const FOLDERS = {
         id: "video", label: "Video", kind: "video",
         desc: "Kuse 发布视频。Echo 负责内容 / 分镜 / 动效 / 整体把控。",
         items: [
-          { yt: "nuCxUIsWjsI", caption: "Kuse 1.0 Launch Video · 内容 + 分镜 + 动效 + 整体把控，外部摄影灯光团队协助录制" },
-          { yt: "SUtAt2GvSeg", caption: "A Boring Product Introduction · 出镜 + 内容 + 分镜 + 动效，含妆造" },
-          { yt: "zzu9PzcS5XQ", caption: "Kuse 2.0 Launch Video · 内容 + 分镜 + 动效 + 整体把控" },
+          { mp4: "assets/videos/kuse-launch-1.mp4", poster: "assets/videos/kuse-launch-1.jpg", caption: "Kuse 1.0 Launch Video · 内容 + 分镜 + 动效 + 整体把控，外部摄影灯光团队协助录制" },
+          { mp4: "assets/videos/kuse-boring.mp4", poster: "assets/videos/kuse-boring.jpg", caption: "A Boring Product Introduction · 出镜 + 内容 + 分镜 + 动效，含妆造" },
+          { mp4: "assets/videos/kuse-launch-2.mp4", poster: "assets/videos/kuse-launch-2.jpg", caption: "Kuse 2.0 Launch Video · 内容 + 分镜 + 动效 + 整体把控" },
         ],
       },
       {
@@ -207,7 +207,7 @@ export const FOLDERS = {
       {
         id: "video", label: "Video", kind: "video",
         desc: "Junior 发布视频，Echo 负责内容 / 分镜 / 动效 / 整体把控，自主拍摄。",
-        items: [{ yt: "yj0Zb4vVDAo", caption: "Junior Launch Video" }],
+        items: [{ mp4: "assets/videos/junior-launch.mp4", poster: "assets/videos/junior-launch.jpg", caption: "Junior Launch Video" }],
       },
       {
         id: "design", label: "设计系统 / 物料", kind: "image",
