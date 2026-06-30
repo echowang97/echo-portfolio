@@ -90,13 +90,13 @@ export const FOLDERS = {
   //   { mp4: "...", poster: "...", caption } 自动播放循环片段（poster 用于缩略图/图堆，强烈建议给）
   //   { yt: "视频ID", caption } YouTube 嵌入
   // 片段建议：720p、几秒、静音、压到 <2MB；放 assets/clips/ 或填外部 CDN 完整 URL 均可。
-  // 缺图缺文先留占位（items 为空 / desc 带〔〕），后面逐个补。
+  // 缺图缺文先留占位（items 为空 / desc 带），后面逐个补。
   delysium: {
     label: "Delysium",
     piles: [
       {
         id: "site", label: "官网", kind: "image",
-        desc: "Delysium 官网 / DNA / Dashboard。〔草稿：补一句定位，待你确认〕",
+        desc: "Delysium 官网 / DNA / Dashboard。",
         items: [
           { img: "assets/covers/delysium.png", caption: "delysium.com · 官网", href: "https://delysium.com" },
           { img: "assets/covers/dna_delysium.png", caption: "dna.delysium.com", href: "https://dna.delysium.com/" },
@@ -114,7 +114,7 @@ export const FOLDERS = {
       },
       {
         id: "poster", label: "海报 / 物料", kind: "image",
-        desc: "Delysium 海报 / 活动 / 社区物料。〔图说可逐个改〕",
+        desc: "Delysium 海报 / 活动 / 社区物料。",
         items: [
           { img: "assets/covers/delysium-poster/whitepaper-banner.jpg", caption: "Whitepaper Banner" },
           { img: "assets/covers/delysium-poster/500k-poster.jpg", caption: "500K Poster" },
@@ -150,14 +150,14 @@ export const FOLDERS = {
       },
       {
         id: "app", label: "Kuse App", kind: "image",
-        desc: "Kuse 产品本体，服务 170 个国家、50 万注册用户的 AI 协作工作台。〔app 界面图后补〕",
+        desc: "Kuse 产品本体，服务 170 个国家、50 万注册用户的 AI 协作工作台。",
         items: [
           { img: "assets/covers/app_kuse.png", caption: "app.kuse.ai", href: "https://app.kuse.ai" },
         ],
       },
       {
         id: "poster", label: "海报", kind: "image",
-        desc: "Kuse 各类海报 / 营销物料。〔图说可逐个改〕",
+        desc: "Kuse 各类海报 / 营销物料。",
         items: [
           { img: "assets/covers/kuse-poster/nanobananapro.jpg", caption: "Nano Banana Pro" },
           { img: "assets/covers/kuse-poster/agentickuse3_4.jpg", caption: "Agentic Kuse" },
@@ -188,7 +188,7 @@ export const FOLDERS = {
       },
       {
         id: "material", label: "物料", kind: "image",
-        desc: "Kuse 周边物料，含 kuse.love（Kuse Shop）。〔后补更多〕",
+        desc: "Kuse 周边物料，含 kuse.love（Kuse Shop）。",
         items: [
           { img: "assets/covers/kuse_shop.png", caption: "kuse.love · Kuse Shop", href: "https://kuse.love" },
         ],
@@ -211,7 +211,7 @@ export const FOLDERS = {
       },
       {
         id: "design", label: "设计系统 / 物料", kind: "image",
-        desc: "设计 token 与组件库（Buttons / Fields / Badges / Cards），绿系品牌色 + Instrument Serif 展示标题 + Montserrat 正文。〔组件图后补〕",
+        desc: "设计 token 与组件库（Buttons / Fields / Badges / Cards），绿系品牌色 + Instrument Serif 展示标题 + Montserrat 正文。",
         items: [],
       },
     ],
@@ -222,28 +222,28 @@ export const FOLDERS = {
     label: "Delysium ONE",
     items: [
       { type: "work", title: "Delysium ONE", status: "放弃 Launch / scrapped", shot: "assets/covers/delysium_one.png",
-        desc: "〔一句话说明这是什么、做到哪一步、为什么没上，晚点补充。〕" },
+        desc: "" },
     ],
   },
   sip: {
     label: "sip",
     items: [
       { type: "work", title: "sip · Web3 · 0→1 视觉体系", status: "未 launch", shot: "assets/covers/sip.png",
-        desc: "sip（@sip_trading_）· The ultimate on-chain trading ecosystem。Echo 做的 0→1 品牌视觉。〔可补细节〕" },
+        desc: "sip（@sip_trading_）· The ultimate on-chain trading ecosystem。Echo 做的 0→1 品牌视觉。" },
     ],
   },
   nofa: {
     label: "NOFA",
     items: [
       { type: "work", title: "NOFA · Web3 · 0→1 视觉体系", status: "未 launch", shot: "assets/covers/nofa.png",
-        desc: "NOFA（@nofA_ai · nofa.ai）· Infrastructure for Agentic Trading。Echo 做的 0→1 品牌视觉。〔可补细节〕" },
+        desc: "NOFA（@nofA_ai · nofa.ai）· Infrastructure for Agentic Trading。Echo 做的 0→1 品牌视觉。" },
     ],
   },
   t54: {
     label: "t54",
     items: [
       { type: "work", title: "t54 · t54.ai · Trust Layer for Agentic Economy", status: "Web3 / AI · 0→1 视觉", shot: "assets/covers/t54.png",
-        desc: "t54（t54.ai）· Trust Layer for Agentic Economy，Backed by Anagram / PL Capital / Franklin Templeton / Ripple。Echo 做的 0→1 品牌视觉。〔可补细节〕" },
+        desc: "t54（t54.ai）· Trust Layer for Agentic Economy，Backed by Anagram / PL Capital / Franklin Templeton / Ripple。Echo 做的 0→1 品牌视觉。" },
     ],
   },
   baidu: {
