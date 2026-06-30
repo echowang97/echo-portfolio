@@ -202,6 +202,18 @@ function galleryMainHTML(it, kind) {
   }
   return `<img class="g-img" src="${it.img}" alt="${esc(it.caption || "")}">`;
 }
+// 图右下角的「访问网站」悬浮按钮
+function openOf(it) {
+  if (!it) return null;
+  if (it.href) return { href: it.href, label: "访问网站 ↗" };
+  if (it.yt) return { href: `https://www.youtube.com/watch?v=${it.yt}`, label: "在 YouTube 打开 ↗" };
+  return null;
+}
+function openLinkHTML(it) {
+  const o = openOf(it);
+  return `<a class="g-open" id="gopen" target="_blank" rel="noopener"${o ? ` href="${o.href}"` : " hidden"}>${o ? esc(o.label) : ""}</a>`;
+}
+
 function galleryActions(it) {
   if (!it) return "";
   if (it.href) return `<a class="chip-link" href="${it.href}" target="_blank" rel="noopener">打开网站 ↗</a>`;
@@ -215,7 +227,10 @@ function galleryHTML(pile, pileKey) {
   const strip = items.map((it, i) =>
     `<button class="g-thumb${i === 0 ? " active" : ""}" data-gidx="${i}"><img src="${thumbSrc(it)}" loading="lazy" alt=""><span class="g-num">${i + 1}</span></button>`).join("");
   return `<div class="gallery" data-kind="${pile.kind || "image"}">
-    <div class="gallery-main" id="gmain">${galleryMainHTML(first, pile.kind)}</div>
+    <div class="gallery-main">
+      <div class="g-stage" id="gmain">${galleryMainHTML(first, pile.kind)}</div>
+      ${openLinkHTML(first)}
+    </div>
     <div class="gallery-desc">
       <div class="g-title">${esc(pile.label)}</div>
       <p class="g-desc" data-edit="desc" data-key="${esc(pileKey)}">${esc(descOf(pileKey, pile))}</p>
@@ -376,6 +391,9 @@ function wireBody(el, key) {
         const it = items[+t.dataset.gidx];
         el.querySelector("#gmain").innerHTML = galleryMainHTML(it, pile.kind);
         playMain();
+        const o = openOf(it), go = el.querySelector("#gopen");
+        if (o) { go.href = o.href; go.textContent = o.label; go.hidden = false; }
+        else { go.removeAttribute("href"); go.hidden = true; }
         const cap = el.querySelector("#gcap");
         cap.textContent = capOf(it);       // 应用已编辑的图说
         cap.dataset.key = capKey(it);       // 切换当前图说的存储键
